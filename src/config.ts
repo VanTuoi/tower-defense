@@ -1,23 +1,36 @@
-import { GameScene } from './scenes/game-scene';
+import Phaser from 'phaser';
+import { CONST } from './const/const';
+import {
+  BootScene,
+  GameOverScene,
+  GameScene,
+  MainMenuScene,
+  WinScene
+} from './scenes';
 
 export const GameConfig: Phaser.Types.Core.GameConfig = {
   title: 'Tower Defense',
+  url: '',
   version: '1.0.0',
+  width: CONST.GAME_WIDTH,
+  height: CONST.GAME_HEIGHT,
   type: Phaser.AUTO,
-  backgroundColor: '#1e1e1e',
+  parent: 'game',
+  scene: [BootScene, MainMenuScene, GameScene, WinScene, GameOverScene],
+  input: {
+    keyboard: true,
+    mouse: true,
+    touch: true,
+    gamepad: false
+  },
+  fps: {
+    target: 60,
+    forceSetTimeOut: true
+  },
+  backgroundColor: '#000000',
+  render: { pixelArt: false, antialias: true },
   scale: {
     mode: Phaser.Scale.FIT,
-    autoCenter: Phaser.Scale.CENTER_BOTH,
-    width: 800,
-    height: 600,
-    parent: 'game'
-  },
-  physics: {
-    default: 'arcade',
-    arcade: {
-      gravity: { x: 0, y: 0 },
-      debug: false
-    }
-  },
-  scene: [GameScene]
+    autoCenter: Phaser.Scale.CENTER_BOTH
+  }
 };
