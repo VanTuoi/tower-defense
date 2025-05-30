@@ -1,10 +1,10 @@
-import { BulletManager, UnitManager } from '../../manager';
+import { ProjectileManager, UnitManager } from '../../manager';
 import { BaseEnemy } from '../../objects';
 import { UnitAttackController } from './unit-attack-controller';
 
 interface AttackControllerProps {
   unitManager: UnitManager;
-  bulletManager: BulletManager;
+  projectileManager: ProjectileManager;
   enemies: BaseEnemy[];
   time: number;
   scene: Phaser.Scene;
@@ -13,7 +13,7 @@ interface AttackControllerProps {
 export class AttackController {
   static handle({
     unitManager,
-    bulletManager,
+    projectileManager,
     enemies,
     time,
     scene
@@ -26,7 +26,7 @@ export class AttackController {
     );
 
     newBullets.forEach((bullet) => {
-      bulletManager.addBullet(bullet);
+      projectileManager.addBullet(bullet);
     });
   }
 }

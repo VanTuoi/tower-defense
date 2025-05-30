@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
 import { BaseProjectile } from '../objects';
 
-export class BulletManager {
+export class ProjectileManager {
   private scene: Phaser.Scene;
   private bullets: BaseProjectile[] = [];
 

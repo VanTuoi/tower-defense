@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { UnitRegistry } from '../factory/unit-factory';
+import { UnitRegistry } from '../factory';
 import { BaseUnit } from '../objects';
 
 export class UnitManager {
@@ -15,25 +15,26 @@ export class UnitManager {
     this.allowedUnits = unitNames;
   }
 
-  addUnit(x: number, y: number, unitType: string = 'RangedUnit') {
+  addUnit(x: number, y: number, unitType: string = 'RangedUnit'): boolean {
     if (!this.allowedUnits.includes(unitType)) {
       console.warn(`Unit type ${unitType} is not allowed in this wave.`);
-      return;
+      return false;
     }
 
     const UnitClass = UnitRegistry[unitType];
     if (!UnitClass) {
       console.error(`Unit type ${unitType} not registered.`);
-      return;
+      return false;
     }
 
     const unit = new UnitClass(this.scene, x, y);
     this.units.push(unit);
+    return true;
   }
+
+  update(time: number) {}
 
   getUnits() {
     return this.units;
   }
-
-  update(time: number) {}
 }

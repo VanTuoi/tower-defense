@@ -1,15 +1,16 @@
-import { GameStateManager, UIManager, UnitManager } from '../../manager';
+import { GameStateManager, UnitManager } from '../../manager';
+import { GameStateController } from '../game-state-controller';
 
 export class InputHandler {
   static handlePointerDown(
     pointer: Phaser.Input.Pointer,
     unitManager: UnitManager,
-    gameStateManager: GameStateManager,
-    uiManager: UIManager
+    gameStateController: GameStateController,
+    gameStateManager: GameStateManager
   ) {
-    if (gameStateManager.spendMoney(50)) {
+    if (gameStateController.spendMoney(50)) {
       unitManager.addUnit(pointer.x, pointer.y);
-      uiManager.updateMoney(gameStateManager.getMoney());
+      gameStateManager.updateMoney(gameStateController.getMoney());
     }
   }
 }

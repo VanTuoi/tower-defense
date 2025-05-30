@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
+import { BulletFactory } from '../../factory';
 import { UnitManager } from '../../manager';
-import { BaseEnemy, BasicBullet } from '../../objects';
+import { BaseEnemy, BaseProjectile } from '../../objects';
 
 export class UnitAttackController {
   static handleAttack(
@@ -8,23 +9,14 @@ export class UnitAttackController {
     enemies: BaseEnemy[],
     time: number,
     scene: Phaser.Scene
-  ): BasicBullet[] {
-    const bullets: BasicBullet[] = [];
+  ): BaseProjectile[] {
+    const bullets: BaseProjectile[] = [];
 
     unitManager.getUnits().forEach((unit) => {
       enemies.forEach((enemy) => {
         const enemySprite = enemy.getSprite();
         if (unit.attack(enemySprite, time)) {
-          const bullet = new BasicBullet(
-            scene,
-            unit.getSprite().x,
-            unit.getSprite().y,
-            'bullet',
-            enemySprite,
-            unit.getPower(),
-            600
-          );
-
+          const bullet = BulletFactory.create(scene, unit, enemySprite);
           bullets.push(bullet);
         }
       });
