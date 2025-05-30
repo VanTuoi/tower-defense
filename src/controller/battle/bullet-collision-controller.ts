@@ -20,18 +20,24 @@ export class BulletCollisionController {
     uiManager
   }: BulletCollisionProps) {
     bulletManager.getBullets().forEach((bullet) => {
+      const bulletSprite = bullet.getSprite();
+      const target = bullet.getTarget();
+
+      if (!target.active || !bulletSprite.active) return;
+
       const dist = Phaser.Math.Distance.Between(
-        bullet.from.x,
-        bullet.from.y,
-        bullet.to.x,
-        bullet.to.y
+        bulletSprite.x,
+        bulletSprite.y,
+        target.x,
+        target.y
       );
 
       if (dist < 32) {
         const killedEnemy = enemyManager.takeDamageOnEnemy(
-          bullet.to,
-          bullet.damage
+          target,
+          bullet.getDamage()
         );
+
         bulletManager.removeBullet(bullet);
 
         if (killedEnemy) {
