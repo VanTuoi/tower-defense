@@ -13,12 +13,21 @@ export class GameEndController {
     const isWinByKills = gameStateManager.isWinByKill();
     const isAllWavesCompleted = enemyManager.isAllWavesCompleted();
 
+    console.log('GameEndController check:', {
+      isLose,
+      isWinByKills,
+      isAllWavesCompleted
+    });
+
     if (isLose) {
       scene.scene.start('GameOverScene');
     } else if (isWinByKills || isAllWavesCompleted) {
+      const enemiesKilled = gameStateManager.getEnemiesKilled();
+      const targetKills = gameStateManager.getTargetKills();
+
       scene.scene.start('WinScene', {
-        enemiesKilled: gameStateManager.getEnemiesKilled(),
-        targetKills: gameStateManager.getTargetKills()
+        enemiesKilled,
+        targetKills
       });
     }
   }

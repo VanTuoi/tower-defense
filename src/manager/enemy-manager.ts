@@ -1,12 +1,11 @@
 import Phaser from 'phaser';
 import { EnemyConfig, EnemyType, LevelConfig } from '../interfaces';
-import { BaseEnemy, BasicEnemy } from '../objects';
+import { BaseEnemy, BasicEnemy, SkeletonCrusader } from '../objects';
 
 type EnemyManagerProps = {
   scene: Phaser.Scene;
   baseEnemyConfig: Record<EnemyType, EnemyConfig>;
   levelConfig: LevelConfig;
-  onAllWavesCompleted?: () => void;
   onWaveStart?: (waveIndex: number) => void;
 };
 
@@ -14,7 +13,6 @@ export class EnemyManager {
   private scene: Phaser.Scene;
   private baseEnemyConfig: Record<EnemyType, EnemyConfig>;
 
-  private onAllWavesCompleted?: () => void;
   private onWaveStart?: (waveIndex: number) => void;
   private levelConfig: LevelConfig;
   private currentWaveIndex: number = 0;
@@ -31,7 +29,6 @@ export class EnemyManager {
     this.scene = props.scene;
     this.baseEnemyConfig = props.baseEnemyConfig;
     this.levelConfig = props.levelConfig;
-    this.onAllWavesCompleted = props.onAllWavesCompleted;
     this.onWaveStart = props.onWaveStart;
   }
 
@@ -46,7 +43,10 @@ export class EnemyManager {
     this.spawning = false;
     this.waveStartTime = 0;
 
-    if (this.onWaveStart) {
+    if (
+      this.onWaveStart &&
+      this.currentWaveIndex < this.levelConfig.waves.length
+    ) {
       this.onWaveStart(this.currentWaveIndex);
     }
   }
@@ -64,7 +64,10 @@ export class EnemyManager {
     const y = 100;
 
     switch (type) {
-      case 'basic':
+      case 'basicEnemy':
+        return new BasicEnemy(this.scene, x, y, finalConfig);
+      case 'skeletonCrusader':
+        return new SkeletonCrusader(this.scene, x, y, finalConfig);
       default:
         return new BasicEnemy(this.scene, x, y, finalConfig);
     }
@@ -72,9 +75,6 @@ export class EnemyManager {
 
   public update(time: number, delta: number): BaseEnemy[] {
     if (this.currentWaveIndex >= this.levelConfig.waves.length) {
-      if (this.enemies.length === 0 && this.onAllWavesCompleted) {
-        this.onAllWavesCompleted();
-      }
       this.enemies = this.enemies.filter((enemy) => {
         enemy.move(delta);
         if (enemy.isOffScreen(this.scene.sys.canvas.height)) {
@@ -102,10 +102,8 @@ export class EnemyManager {
     } else {
       if (this.currentEnemySpawnIndex >= currentWave.enemies.length) {
         if (this.enemies.length === 0) {
-          if (this.currentWaveIndex + 1 < this.levelConfig.waves.length) {
+          if (this.currentWaveIndex + 1 <= this.levelConfig.waves.length) {
             this.startWave(this.currentWaveIndex + 1);
-          } else if (this.onAllWavesCompleted) {
-            this.onAllWavesCompleted();
           }
         }
       } else {
@@ -147,16 +145,17 @@ export class EnemyManager {
   public takeDamageOnEnemy(
     target: Phaser.GameObjects.Sprite,
     damage: number
-  ): boolean {
+  ): BaseEnemy | null {
     const enemy = this.enemies.find((e) => e.getSprite() === target);
-    if (!enemy) return false;
+    if (!enemy) return null;
 
     const destroyed = enemy.takeDamage(damage);
     if (destroyed) {
       this.enemies = this.enemies.filter((e) => e !== enemy);
+      return enemy;
     }
 
-    return destroyed;
+    return null;
   }
 
   public getEnemies(): BaseEnemy[] {
@@ -164,6 +163,14 @@ export class EnemyManager {
   }
 
   public isAllWavesCompleted(): boolean {
-    return this.currentWaveIndex >= this.levelConfig.waves.length;
+    console.log('Checking all waves completed:', {
+      currentWaveIndex: this.currentWaveIndex,
+      totalWaves: this.levelConfig.waves.length,
+      enemiesRemaining: this.enemies.length
+    });
+    return (
+      this.currentWaveIndex >= this.levelConfig.waves.length &&
+      this.enemies.length === 0
+    );
   }
 }

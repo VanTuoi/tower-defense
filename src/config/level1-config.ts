@@ -8,10 +8,10 @@ export const level1Config: LevelConfig = {
       waveDelay: 1000,
       enemies: [
         {
-          type: 'basic',
+          type: 'basicEnemy',
           count: 5,
           spawnInterval: 1000,
-          statsModifier: { hp: 50, speed: 80 }
+          statsModifier: { speed: 80 }
         }
       ],
       allowedUnits: ['RangedUnit']
@@ -20,7 +20,13 @@ export const level1Config: LevelConfig = {
       waveDelay: 2000,
       enemies: [
         {
-          type: 'basic',
+          type: 'basicEnemy',
+          count: 10,
+          spawnInterval: 700,
+          statsModifier: { speed: 150 }
+        },
+        {
+          type: 'skeletonCrusader',
           count: 10,
           spawnInterval: 700,
           statsModifier: { speed: 150 }
