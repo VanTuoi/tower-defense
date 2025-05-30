@@ -1,30 +1,31 @@
-import { Bullet } from '../../interfaces';
+import Phaser from 'phaser';
 import { UnitManager } from '../../manager';
-import { BaseEnemy } from '../../objects';
+import { BaseEnemy, BasicBullet } from '../../objects';
 
 export class UnitAttackController {
   static handleAttack(
     unitManager: UnitManager,
     enemies: BaseEnemy[],
-    time: number
-  ): {
-    from: Phaser.GameObjects.Sprite;
-    to: Phaser.GameObjects.Sprite;
-    damage: number;
-    speed: number;
-  }[] {
-    const bullets: Bullet[] = [];
+    time: number,
+    scene: Phaser.Scene
+  ): BasicBullet[] {
+    const bullets: BasicBullet[] = [];
 
     unitManager.getUnits().forEach((unit) => {
       enemies.forEach((enemy) => {
         const enemySprite = enemy.getSprite();
         if (unit.attack(enemySprite, time)) {
-          bullets.push({
-            from: unit.getSprite(),
-            to: enemySprite,
-            damage: unit.getPower(),
-            speed: 600
-          });
+          const bullet = new BasicBullet(
+            scene,
+            unit.getSprite().x,
+            unit.getSprite().y,
+            'bullet',
+            enemySprite,
+            unit.getPower(),
+            600
+          );
+
+          bullets.push(bullet);
         }
       });
     });

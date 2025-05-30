@@ -1,4 +1,3 @@
-import { Bullet } from '../../interfaces';
 import { BulletManager, UnitManager } from '../../manager';
 import { BaseEnemy } from '../../objects';
 import { UnitAttackController } from './unit-attack-controller';
@@ -8,6 +7,7 @@ interface AttackControllerProps {
   bulletManager: BulletManager;
   enemies: BaseEnemy[];
   time: number;
+  scene: Phaser.Scene;
 }
 
 export class AttackController {
@@ -15,21 +15,18 @@ export class AttackController {
     unitManager,
     bulletManager,
     enemies,
-    time
+    time,
+    scene
   }: AttackControllerProps) {
     const newBullets = UnitAttackController.handleAttack(
       unitManager,
       enemies,
-      time
+      time,
+      scene
     );
 
-    newBullets.forEach((bullet: Bullet) => {
-      bulletManager.addBullet(
-        bullet.from,
-        bullet.to,
-        bullet.damage,
-        bullet.speed
-      );
+    newBullets.forEach((bullet) => {
+      bulletManager.addBullet(bullet);
     });
   }
 }

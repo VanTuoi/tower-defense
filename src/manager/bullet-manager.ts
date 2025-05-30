@@ -1,53 +1,26 @@
 import Phaser from 'phaser';
-import { Bullet } from '../interfaces';
+import { BaseProjectile } from '../objects';
 
 export class BulletManager {
   private scene: Phaser.Scene;
-  private bullets: Bullet[] = [];
+  private bullets: BaseProjectile[] = [];
 
   constructor(scene: Phaser.Scene) {
     this.scene = scene;
   }
 
-  addBullet(
-    from: Phaser.GameObjects.Sprite,
-    to: Phaser.GameObjects.Sprite,
-    damage: number,
-    speed: number
-  ) {
-    const bulletSprite = this.scene.add
-      .sprite(from.x, from.y, 'bullet')
-      .setScale(0.5);
-
-    const bullet: Bullet = {
-      from: bulletSprite,
-      to,
-      damage,
-      speed
-    };
-
+  addBullet(bullet: BaseProjectile) {
     this.bullets.push(bullet);
   }
 
-  update(delta: number): Bullet[] {
+  update(delta: number): BaseProjectile[] {
     this.bullets = this.bullets.filter((bullet) => {
-      const { from, to, speed } = bullet;
-
-      if (!to.active || !from.active) {
-        from.destroy();
+      if (!bullet.isActive()) {
+        bullet.destroy();
         return false;
       }
 
-      const dx = to.x - from.x;
-      const dy = to.y - from.y;
-      const dist = Math.sqrt(dx * dx + dy * dy);
-
-      const velX = (dx / dist) * speed * (delta / 1000);
-      const velY = (dy / dist) * speed * (delta / 1000);
-
-      from.x += velX;
-      from.y += velY;
-
+      bullet.update(delta);
       return true;
     });
 
@@ -58,8 +31,8 @@ export class BulletManager {
     return this.bullets;
   }
 
-  removeBullet(bulletToRemove: Bullet) {
+  removeBullet(bulletToRemove: BaseProjectile) {
     this.bullets = this.bullets.filter((bullet) => bullet !== bulletToRemove);
-    bulletToRemove.from.destroy();
+    bulletToRemove.destroy();
   }
 }

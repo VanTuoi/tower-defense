@@ -96,7 +96,8 @@ export class GameScene extends Phaser.Scene {
       unitManager: this.unitManager,
       bulletManager: this.bulletManager,
       enemies,
-      time
+      time,
+      scene: this
     });
 
     this.bulletManager.update(delta);
