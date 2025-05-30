@@ -9,12 +9,14 @@ export abstract class BaseEnemy {
   protected hp: number;
   protected hpText: Phaser.GameObjects.BitmapText;
   protected config: EnemyConfig;
+  protected rewardGold: number;
 
   constructor(scene: Phaser.Scene, x: number, y: number, config: EnemyConfig) {
     this.scene = scene;
 
     this.config = {
-      scale: 1,
+      height: 128,
+      width: 128,
       hpTextOffsetY: 30,
       hpTextFontSize: 20,
       ...config
@@ -22,9 +24,11 @@ export abstract class BaseEnemy {
 
     this.sprite = scene.add
       .sprite(x, y, config.texture || 'enemy')
-      .setOrigin(0.5)
-      .setScale(this.config.scale!);
+      .setOrigin(0.5);
 
+    this.sprite.setDisplaySize(this.config.width!, this.config.height!);
+
+    this.rewardGold = config.rewardGold ?? 0;
     this.hp = this.config.hp;
     this.speed = this.config.speed;
 
@@ -72,7 +76,15 @@ export abstract class BaseEnemy {
     return this.config.power;
   }
 
+  public getRewardGold(): number {
+    return this.config.rewardGold ?? 0;
+  }
+
   public isOffScreen(height: number): boolean {
     return this.sprite.y > height;
+  }
+
+  public resizeSprite() {
+    this.sprite.setDisplaySize(this.config.width!, this.config.height!);
   }
 }

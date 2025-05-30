@@ -52,9 +52,6 @@ export class GameScene extends Phaser.Scene {
       scene: this,
       baseEnemyConfig: enemyConfigs,
       levelConfig: level1Config,
-      onAllWavesCompleted: () => {
-        this.scene.start('WinScene');
-      },
       onWaveStart: (waveIndex: number) => {
         const allowed = level1Config.waves[waveIndex].allowedUnits;
         if (allowed) {
@@ -78,14 +75,6 @@ export class GameScene extends Phaser.Scene {
   }
 
   create() {
-    console.log(
-      'Canvas size:',
-      this.sys.game.config.width,
-      this.sys.game.config.height
-    );
-    console.log('Window size:', window.innerWidth, window.innerHeight);
-    console.log('Scale factor:', this.sys.game.scale.displayScale);
-
     MapView.drawMapBorders(this, this.gameWidth, this.gameHeight);
 
     this.input.on('pointerdown', (pointer: Phaser.Input.Pointer) => {

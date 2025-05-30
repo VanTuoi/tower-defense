@@ -1,0 +1,108 @@
+{
+  "textures": [
+    {
+      "image": "texture",
+      "format": "RGBA8888",
+      "size": { "w": 0, "h": 0 },
+      "scale": 1,
+      "frames": [
+        {
+          "filename": "0_Minotaur_Running_000",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": { "w": 900, "h": 900 },
+          "spriteSourceSize": { "x": 0, "y": 0, "w": 900, "h": 900 },
+          "frame": { "x": 0, "y": 0, "w": 900, "h": 900 }
+        },
+        {
+          "filename": "0_Minotaur_Running_001",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": { "w": 900, "h": 900 },
+          "spriteSourceSize": { "x": 0, "y": 0, "w": 900, "h": 900 },
+          "frame": { "x": 900, "y": 0, "w": 900, "h": 900 }
+        },
+        {
+          "filename": "0_Minotaur_Running_002",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": { "w": 900, "h": 900 },
+          "spriteSourceSize": { "x": 0, "y": 0, "w": 900, "h": 900 },
+          "frame": { "x": 1800, "y": 0, "w": 900, "h": 900 }
+        },
+        {
+          "filename": "0_Minotaur_Running_003",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": { "w": 900, "h": 900 },
+          "spriteSourceSize": { "x": 0, "y": 0, "w": 900, "h": 900 },
+          "frame": { "x": 0, "y": 900, "w": 900, "h": 900 }
+        },
+        {
+          "filename": "0_Minotaur_Running_004",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": { "w": 900, "h": 900 },
+          "spriteSourceSize": { "x": 0, "y": 0, "w": 900, "h": 900 },
+          "frame": { "x": 900, "y": 900, "w": 900, "h": 900 }
+        },
+        {
+          "filename": "0_Minotaur_Running_005",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": { "w": 900, "h": 900 },
+          "spriteSourceSize": { "x": 0, "y": 0, "w": 900, "h": 900 },
+          "frame": { "x": 1800, "y": 900, "w": 900, "h": 900 }
+        },
+        {
+          "filename": "0_Minotaur_Running_006",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": { "w": 900, "h": 900 },
+          "spriteSourceSize": { "x": 0, "y": 0, "w": 900, "h": 900 },
+          "frame": { "x": 0, "y": 1800, "w": 900, "h": 900 }
+        },
+        {
+          "filename": "0_Minotaur_Running_007",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": { "w": 900, "h": 900 },
+          "spriteSourceSize": { "x": 0, "y": 0, "w": 900, "h": 900 },
+          "frame": { "x": 900, "y": 1800, "w": 900, "h": 900 }
+        },
+        {
+          "filename": "0_Minotaur_Running_008",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": { "w": 900, "h": 900 },
+          "spriteSourceSize": { "x": 0, "y": 0, "w": 900, "h": 900 },
+          "frame": { "x": 1800, "y": 1800, "w": 900, "h": 900 }
+        },
+        {
+          "filename": "0_Minotaur_Running_009",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": { "w": 900, "h": 900 },
+          "spriteSourceSize": { "x": 0, "y": 0, "w": 900, "h": 900 },
+          "frame": { "x": 0, "y": 2700, "w": 900, "h": 900 }
+        },
+        {
+          "filename": "0_Minotaur_Running_010",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": { "w": 900, "h": 900 },
+          "spriteSourceSize": { "x": 0, "y": 0, "w": 900, "h": 900 },
+          "frame": { "x": 900, "y": 2700, "w": 900, "h": 900 }
+        },
+        {
+          "filename": "0_Minotaur_Running_011",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": { "w": 900, "h": 900 },
+          "spriteSourceSize": { "x": 0, "y": 0, "w": 900, "h": 900 },
+          "frame": { "x": 1800, "y": 2700, "w": 900, "h": 900 }
+        }
+      ]
+    }
+  ]
+}

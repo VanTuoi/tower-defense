@@ -28,14 +28,15 @@ export class BulletCollisionController {
       );
 
       if (dist < 32) {
-        const destroyed = enemyManager.takeDamageOnEnemy(
+        const killedEnemy = enemyManager.takeDamageOnEnemy(
           bullet.to,
           bullet.damage
         );
         bulletManager.removeBullet(bullet);
 
-        if (destroyed) {
-          gameStateManager.addMoney(5);
+        if (killedEnemy) {
+          const gold = killedEnemy.getRewardGold();
+          gameStateManager.addMoney(gold);
           gameStateManager.addKill();
           uiManager.updateMoney(gameStateManager.getMoney());
         }

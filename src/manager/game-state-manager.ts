@@ -50,10 +50,12 @@ export class GameStateManager {
   }
 
   public getEnemiesKilled() {
+    console.log('getEnemiesKilled', this.enemiesKilled);
     return this.enemiesKilled;
   }
 
   public getTargetKills() {
+    console.log('getTargetKills', this.targetKills);
     return this.targetKills;
   }
 }
