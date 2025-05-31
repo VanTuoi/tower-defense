@@ -1,13 +1,17 @@
 import Phaser from 'phaser';
+import { Colors } from './config';
 import { CONST } from './const/const';
 import {
   BootScene,
   GameOverScene,
   GameScene,
+  HeaderScene,
   LevelSelectionScene,
   MainMenuScene,
   WinScene
 } from './scenes';
+
+import RexUIPlugin from 'phaser3-rex-plugins/templates/ui/ui-plugin.js';
 
 export const GameConfig: Phaser.Types.Core.GameConfig = {
   title: 'Tower Defense',
@@ -23,7 +27,8 @@ export const GameConfig: Phaser.Types.Core.GameConfig = {
     GameScene,
     WinScene,
     GameOverScene,
-    LevelSelectionScene
+    LevelSelectionScene,
+    HeaderScene
   ],
   input: {
     keyboard: true,
@@ -35,10 +40,20 @@ export const GameConfig: Phaser.Types.Core.GameConfig = {
     target: 60,
     forceSetTimeOut: true
   },
-  backgroundColor: '#000000',
+  backgroundColor: Colors.background.main,
   render: { pixelArt: false, antialias: true },
   scale: {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH
+  },
+
+  plugins: {
+    scene: [
+      {
+        key: 'rexUI',
+        plugin: RexUIPlugin,
+        mapping: 'rexUI'
+      }
+    ]
   }
 };

@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { CONST } from '../const/const';
 import { EnemyConfig, EnemyType } from '../interfaces';
 import { BaseEnemy, BasicEnemy, SkeletonCrusader } from '../objects';
 
@@ -23,7 +24,7 @@ export class EnemyFactory {
 
     const finalConfig = { ...baseConfig, ...statsModifier };
     const x = Phaser.Math.Between(100, this.scene.sys.canvas.width - 100);
-    const y = 100;
+    const y = 150 + CONST.HEADER_HEIGHT;
 
     switch (type) {
       case 'basicEnemy':

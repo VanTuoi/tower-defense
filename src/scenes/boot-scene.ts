@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { Colors } from '../config/colors';
 
 export class BootScene extends Phaser.Scene {
   private loadingBar!: Phaser.GameObjects.Graphics;
@@ -12,7 +13,7 @@ export class BootScene extends Phaser.Scene {
     const { width, height } = this.sys.canvas;
 
     this.loadingBar = this.add.graphics();
-    this.loadingBar.fillStyle(0xffffff, 1);
+    this.loadingBar.fillStyle(Colors.ui.loadingBarBg, 1);
     this.loadingBar.fillRect(width / 2 - 160, height / 2 - 25, 320, 50);
 
     this.progressBar = this.add.graphics();
@@ -20,13 +21,15 @@ export class BootScene extends Phaser.Scene {
     const loadingText = this.add
       .text(width / 2, height / 2 - 50, 'Loading: 0%', {
         fontSize: '30px',
-        color: '#ffffff'
+        color: '#ffffff',
+        stroke: '#ffffff',
+        strokeThickness: 2
       })
       .setOrigin(0.5);
 
     this.load.on('progress', (value: number) => {
       this.progressBar.clear();
-      this.progressBar.fillStyle(0x00ff00, 1);
+      this.progressBar.fillStyle(Colors.ui.loadingBarProgress, 1);
       this.progressBar.fillRect(
         width / 2 - 150,
         height / 2 - 15,
@@ -51,6 +54,11 @@ export class BootScene extends Phaser.Scene {
     );
     this.load.audio('shoot', 'assets/audio/shoot.mp3');
     this.load.audio('towerDefense', 'assets/audio/tower-defense.mp3');
+
+    this.load.image('default-icon', 'assets/images/levels/icon-level-1.png');
+    this.load.image('icon-level-1', 'assets/images/levels/icon-level-1.png');
+    this.load.image('icon-level-2', 'assets/images/levels/icon-level-2.png');
+
     this.load.image('background', 'assets/images/background.png');
     this.load.image('cursorArrow', 'assets/images/cursor-arrow.png');
     this.load.image('basicBullet', 'assets/images/basic-bullet.png');
@@ -68,7 +76,6 @@ export class BootScene extends Phaser.Scene {
       'assets/images/basic-enemy-die.png',
       'assets/images/basic-enemy-die.json'
     );
-
     this.load.atlas(
       'skeleton-crusader',
       'assets/images/skeleton-crusader.png',
@@ -108,6 +115,7 @@ export class BootScene extends Phaser.Scene {
       frameRate: 12,
       repeat: -1
     });
+
     this.anims.create({
       key: 'basic-enemy-die',
       frames: this.anims.generateFrameNames('basic-enemy-die', {

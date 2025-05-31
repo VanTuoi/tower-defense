@@ -1,20 +1,21 @@
+import { Colors } from '../config';
 import { CONST } from '../const/const';
 
 export class MapView {
   static drawMapBorders(
     scene: Phaser.Scene,
     gameWidth: number,
-    gameHeight: number,
-    selectionAreaHeight: number = 70
+    gameHeight: number
   ) {
-    scene.cameras.main.setBackgroundColor(0x3a3a3a);
+    scene.cameras.main.setBackgroundColor(Colors.background.gameMap);
 
-    const usableHeight = gameHeight - selectionAreaHeight;
+    const usableHeight =
+      gameHeight - CONST.SELECTION_AREA_HEIGHT - CONST.HEADER_HEIGHT;
 
     const graphics = scene.add.graphics();
     graphics.setDepth(-1);
-    graphics.fillStyle(0x8b4513, 1);
-    graphics.fillRect(0, 0, gameWidth, usableHeight);
+    graphics.fillStyle(Colors.background.ground, 1);
+    graphics.fillRect(0, CONST.HEADER_HEIGHT, gameWidth, usableHeight);
 
     const cols = Math.ceil(gameWidth / CONST.FIELD_SIZE);
     const rows = Math.ceil(usableHeight / CONST.FIELD_SIZE);
@@ -23,7 +24,11 @@ export class MapView {
       for (let y = 0; y < rows; y++) {
         if (y === 0 || y === rows - 1 || x === 0 || x === cols - 1) {
           scene.add
-            .sprite(x * CONST.FIELD_SIZE, y * CONST.FIELD_SIZE, 'border')
+            .sprite(
+              x * CONST.FIELD_SIZE,
+              CONST.HEADER_HEIGHT + y * CONST.FIELD_SIZE,
+              'border'
+            )
             .setOrigin(0)
             .setDisplaySize(CONST.FIELD_SIZE, CONST.FIELD_SIZE);
         }
