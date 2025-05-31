@@ -3,7 +3,8 @@ import {
   BaseProjectile,
   BaseUnit,
   BasicBullet,
-  ExplosiveBullet
+  ExplosiveBullet,
+  LikeBullet
 } from '../objects';
 
 export class BulletFactory {
@@ -33,8 +34,10 @@ export class BulletFactory {
       case 'explosive':
         bullet = new ExplosiveBullet(scene, x, y, target);
         break;
+      case 'like':
+        bullet = new LikeBullet(scene, x, y, target);
+        break;
       case 'basic':
-      case 'melee':
       default:
         bullet = new BasicBullet(scene, x, y, target);
     }

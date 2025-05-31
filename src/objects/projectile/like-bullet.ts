@@ -1,14 +1,16 @@
+import Phaser from 'phaser';
 import { BaseProjectile } from './base-projectile';
 
-export class ExplosiveBullet extends BaseProjectile {
+export class LikeBullet extends BaseProjectile {
   constructor(
     scene: Phaser.Scene,
     x: number,
     y: number,
     target: Phaser.GameObjects.Sprite
   ) {
-    super(scene, x, y, 'water-projectile-anim', target, 0, 0);
+    super(scene, x, y, 'like-projectile', target, 0, 0);
   }
+
   update(delta: number): void {
     if (!this.target.active || !this.sprite.active) {
       this.destroy();

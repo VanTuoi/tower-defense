@@ -2,27 +2,27 @@ import { ProjectileStats } from '../interfaces';
 
 export const ProjectileConfig: Record<string, ProjectileStats> = {
   basic: {
-    texture: 'basicBullet',
-    speed: 300,
-    sound: 'shoot',
+    texture: 'fire-projectile-anim',
+    speed: 350,
+    sound: 'fire',
     displayWidth: 6,
     displayHeight: 6,
-    scale: 0.2
+    scale: 0.1
   },
   explosive: {
-    texture: 'explosiveBullet',
-    speed: 250,
-    sound: 'shoot',
+    texture: 'water-projectile-anim',
+    speed: 350,
+    sound: 'water',
     displayWidth: 16,
     displayHeight: 16,
-    scale: 0.5
+    scale: 0.05
   },
-  melee: {
-    texture: 'meleeBullet',
-    speed: 200,
-    sound: 'shoot',
+  like: {
+    texture: 'like-projectile',
+    speed: 300,
+    sound: 'fire',
     displayWidth: 16,
     displayHeight: 16,
-    scale: 0.5
+    scale: 0.15
   }
 };
