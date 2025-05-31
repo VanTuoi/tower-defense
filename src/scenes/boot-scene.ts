@@ -65,6 +65,26 @@ export class BootScene extends Phaser.Scene {
     this.load.image('explosiveBullet', 'assets/images/explosive-bullet.png');
     this.load.image('border', 'assets/images/border.png');
     this.load.image('enemy', 'assets/images/enemy.png');
+    this.load.image('ranged', 'assets/images/ranged.png');
+    this.load.image('sniper', 'assets/images/sniper.png');
+
+    this.load.atlas(
+      'fire-projectile',
+      'assets/images/projectile/fire.png',
+      'assets/images/projectile/fire.json'
+    );
+
+    this.load.atlas(
+      'sniper-attack',
+      'assets/images/sniper-attack.png',
+      'assets/images/sniper-attack.json'
+    );
+
+    this.load.atlas(
+      'ranged-attack',
+      'assets/images/ranged-attack.png',
+      'assets/images/ranged-attack.json'
+    );
 
     this.load.atlas(
       'basic-enemy',
@@ -86,21 +106,42 @@ export class BootScene extends Phaser.Scene {
       'assets/images/skeleton-crusader-die.png',
       'assets/images/skeleton-crusader-die.json'
     );
-
-    this.load.spritesheet('rangedUnit', 'assets/images/ranged-unit.png', {
-      frameWidth: 160,
-      frameHeight: 202
-    });
   }
 
   create(): void {
     this.anims.create({
-      key: 'ranged-attack',
-      frames: this.anims.generateFrameNumbers('rangedUnit', {
+      key: 'fire-projectile',
+      frames: this.anims.generateFrameNames('fire-projectile', {
+        prefix: '',
         start: 0,
-        end: 3
+        end: 40,
+        zeroPad: 2
       }),
-      frameRate: 10,
+      frameRate: 12,
+      repeat: 0
+    });
+
+    this.anims.create({
+      key: 'sniper-attack',
+      frames: this.anims.generateFrameNames('sniper-attack', {
+        prefix: 'Sniper-Slashing_',
+        start: 0,
+        end: 11,
+        zeroPad: 3
+      }),
+      frameRate: 12,
+      repeat: 0
+    });
+
+    this.anims.create({
+      key: 'ranged-attack',
+      frames: this.anims.generateFrameNames('ranged-attack', {
+        prefix: 'Slashing_',
+        start: 0,
+        end: 11,
+        zeroPad: 3
+      }),
+      frameRate: 12,
       repeat: 0
     });
 

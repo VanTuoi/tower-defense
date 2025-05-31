@@ -6,7 +6,7 @@ export class UnitSelectionView {
   private scene: Phaser.Scene;
   private controller: UnitSelectionController;
   private gameHeight: number;
-  private buttonSize = 50;
+  private buttonSize = 100;
   private padding = 10;
 
   private selectionBorders: Map<string, Phaser.GameObjects.Graphics> =
@@ -23,25 +23,26 @@ export class UnitSelectionView {
     this.gameHeight = gameHeight;
   }
 
-  render() {
-    const unitTypes = Object.keys(UnitConfig);
+  render(allowedUnits: string[]) {
+    const unitTypes = allowedUnits;
 
     unitTypes.forEach((unitType, index) => {
+      const config = UnitConfig[unitType];
+      const textureKey = config.idleTextureKey;
+
       const x = this.padding + index * (this.buttonSize + this.padding);
       const y = this.gameHeight - this.buttonSize - this.padding;
 
-      // const btn = this.scene.add.image(x, y, unitType).setOrigin(0);
-      const btn = this.scene.add.sprite(x, y, 'rangedUnit', 0).setOrigin(0);
-
+      const btn = this.scene.add.image(x, y, textureKey).setOrigin(0);
       btn.setDisplaySize(this.buttonSize, this.buttonSize);
       btn.setInteractive();
       btn.on('pointerdown', () => this.selectUnit(unitType));
 
-      const cost = UnitConfig[unitType].cost;
-      this.scene.add.text(x, y - 30, `${cost}`, {
-        fontSize: '30px',
-        color: '#fff'
-      });
+      const centerX = x + this.buttonSize / 2;
+      const costY = y - 20;
+      this.scene.add
+        .bitmapText(centerX, costY, 'towerDefenseFont', `${config.cost}`, 24)
+        .setOrigin(0.5);
 
       const border = this.scene.add.graphics();
       border.lineStyle(3, 0xffff00);

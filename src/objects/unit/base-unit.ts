@@ -11,13 +11,14 @@ export abstract class BaseUnit {
   protected lastAttackTime: number = 0;
   protected rangeCircle: Phaser.GameObjects.Graphics;
   protected bulletType: string = 'basic';
+  protected idleTextureKey?: string;
 
   constructor(scene: Phaser.Scene, x: number, y: number) {
     this.scene = scene;
     this.sprite = this.scene.add
       .sprite(x, y, 'enemy')
       .setOrigin(0.5)
-      .setScale(1.5);
+      .setScale(1);
 
     this.rangeCircle = this.scene.add.graphics();
     this.updateRangeCircle(x, y);
@@ -64,8 +65,8 @@ export abstract class BaseUnit {
     this.bulletType = type;
   }
 
-  public setTexture(textureKey: string, scale: number = 2): void {
-    this.sprite.setTexture(textureKey).setScale(scale);
+  public setTexture(textureKey: string): void {
+    this.sprite.setTexture(textureKey);
   }
 
   public setDisplaySize(width?: number, height?: number): void {
@@ -100,7 +101,7 @@ export abstract class BaseUnit {
 
   public updateRangeCircle(x: number, y: number): void {
     this.rangeCircle.clear();
-    this.rangeCircle.lineStyle(2, 0x00ff00, 0.5);
+    this.rangeCircle.lineStyle(2, 0x00ff00, 0.2);
     this.rangeCircle.strokeCircle(x, y, this.range);
   }
 
@@ -108,7 +109,7 @@ export abstract class BaseUnit {
     this.setPower(config.power);
     this.setAttackSpeed(config.attackSpeed);
     this.setRange(config.range);
-    this.setTexture(config.textureKey, config.scale ?? 1);
+    this.setTexture(config.idleTextureKey);
     this.setCost(config.cost);
     this.setBulletType(config.bulletType);
 

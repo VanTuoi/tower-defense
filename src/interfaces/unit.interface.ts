@@ -4,6 +4,7 @@ export type UnitStats = {
   attackSpeed: number;
   range: number;
   textureKey: string;
+  idleTextureKey: string;
   bulletType: string;
   scale?: number;
   displayWidth?: number;

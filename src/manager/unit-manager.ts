@@ -37,4 +37,8 @@ export class UnitManager {
   getUnits() {
     return this.units;
   }
+
+  getAllowedUnits() {
+    return this.allowedUnits;
+  }
 }
