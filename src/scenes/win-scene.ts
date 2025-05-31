@@ -1,4 +1,5 @@
-import { UIButton } from '../view';
+import { Colors } from '../config';
+import { BaseButton } from '../view';
 
 type WinSceneProps = {
   enemiesKilled: number;
@@ -19,9 +20,7 @@ export class WinScene extends Phaser.Scene {
   }
 
   create() {
-    const { width, height } = this.sys.canvas;
-
-    this.cameras.main.setBackgroundColor('rgba(0, 0, 0, 0.8)');
+    const { width, height } = this.scale;
 
     this.add
       .bitmapText(
@@ -32,7 +31,7 @@ export class WinScene extends Phaser.Scene {
         64
       )
       .setOrigin(0.5)
-      .setTint(0xffff00);
+      .setTint(Colors.text.title);
 
     this.add
       .bitmapText(
@@ -43,9 +42,9 @@ export class WinScene extends Phaser.Scene {
         36
       )
       .setOrigin(0.5)
-      .setTint(0xffffff);
+      .setTint(Colors.text.default);
 
-    const restartButton = new UIButton(
+    const restartButton = new BaseButton(
       this,
       width / 2,
       height / 2 + 80,
@@ -54,6 +53,18 @@ export class WinScene extends Phaser.Scene {
       80,
       () => {
         this.scene.start('GameScene');
+      }
+    );
+
+    const levelSelectButton = new BaseButton(
+      this,
+      width / 2,
+      height / 2 + 230,
+      'SELECT LEVELS',
+      350,
+      80,
+      () => {
+        this.scene.start('LevelSelectionScene');
       }
     );
 

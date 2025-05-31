@@ -1,8 +1,10 @@
 import { LevelConfig } from '../../interfaces';
 
-export const level1Config: LevelConfig = {
-  initialHp: 100,
-  initialMoney: 1000,
+export const level2Config: LevelConfig = {
+  initialHp: 200,
+  initialMoney: 200,
+  background: 'bg-level-2',
+  icon: 'icon-level-2',
   waves: [
     {
       waveDelay: 1000,
@@ -14,7 +16,7 @@ export const level1Config: LevelConfig = {
           statsModifier: { speed: 80 }
         }
       ],
-      allowedUnits: ['RangedUnit', 'SniperUnit']
+      allowedUnits: ['RangedUnit']
     },
     {
       waveDelay: 2000,

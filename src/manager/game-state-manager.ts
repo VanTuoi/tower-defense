@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { CONST } from '../const/const';
 
 export class GameStateManager {
   private scene: Phaser.Scene;
@@ -11,7 +12,7 @@ export class GameStateManager {
     this.moneyText = this.scene.add
       .bitmapText(
         this.scene.sys.canvas.width - 200,
-        60,
+        60 + CONST.HEADER_HEIGHT,
         'towerDefenseFont',
         'Money: ' + initMoney,
         24
@@ -19,7 +20,13 @@ export class GameStateManager {
       .setOrigin(0.5);
 
     this.hpText = this.scene.add
-      .bitmapText(200, 60, 'towerDefenseFont', 'HP: ' + initHp, 24)
+      .bitmapText(
+        200,
+        60 + CONST.HEADER_HEIGHT,
+        'towerDefenseFont',
+        'HP: ' + initHp,
+        24
+      )
       .setOrigin(0.5);
   }
 

@@ -1,4 +1,5 @@
-import { UIButton } from '../view';
+import { Colors } from '../config';
+import { BaseButton } from '../view';
 
 export class GameOverScene extends Phaser.Scene {
   constructor() {
@@ -6,7 +7,7 @@ export class GameOverScene extends Phaser.Scene {
   }
 
   create() {
-    const { width, height } = this.sys.canvas;
+    const { width, height } = this.scale;
 
     this.add
       .bitmapText(
@@ -17,9 +18,9 @@ export class GameOverScene extends Phaser.Scene {
         64
       )
       .setOrigin(0.5)
-      .setTint(0xff0000);
+      .setTint(Colors.danger.normal);
 
-    const restartButton = new UIButton(
+    const restartButton = new BaseButton(
       this,
       width / 2,
       height / 2 + 50,

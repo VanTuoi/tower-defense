@@ -9,6 +9,7 @@ import {
   UnitSelectionController
 } from '../controller';
 
+import { CONST } from '../const/const';
 import { LevelConfig } from '../interfaces';
 import {
   EnemyManager,
@@ -67,13 +68,26 @@ export class GameScene extends Phaser.Scene {
   }
 
   create() {
-    MapView.drawMapBorders(this, this.gameWidth, this.gameHeight, 100);
+    this.scene.launch('HeaderScene');
+
+    this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
+      this.scene.stop('HeaderScene');
+    });
+
+    this.events.once(Phaser.Scenes.Events.DESTROY, () => {
+      this.scene.stop('HeaderScene');
+    });
+
+    MapView.drawMapBorders(this, this.gameWidth, this.gameHeight);
 
     this.unitSelectionView.render();
 
     this.input.on('pointerdown', (pointer: Phaser.Input.Pointer) => {
-      const isInSelectionArea = pointer.y >= this.gameHeight - 100;
-      if (!isInSelectionArea) {
+      const isInSelectionArea =
+        pointer.y >= this.gameHeight - CONST.SELECTION_AREA_HEIGHT;
+      const isInHeaderArea = pointer.y <= CONST.HEADER_HEIGHT;
+
+      if (!isInSelectionArea && !isInHeaderArea) {
         this.unitSelectionController.handlePlacement(pointer.x, pointer.y);
       }
     });

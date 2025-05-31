@@ -1,19 +1,29 @@
 import Phaser from 'phaser';
-import { UIButton } from '../view';
+import { Colors } from '../config';
+import { BaseButton } from '../view';
 
 export class MainMenuScene extends Phaser.Scene {
   private backgroundMusic?: Phaser.Sound.BaseSound;
+
   constructor() {
-    super({
-      key: 'MainMenuScene'
-    });
+    super({ key: 'MainMenuScene' });
   }
 
   create(): void {
-    const { width, height } = this.sys.canvas;
+    const { width, height } = this.scale;
 
     const bg = this.add.image(0, 0, 'background').setOrigin(0, 0);
     bg.setDisplaySize(width, height);
+
+    const overlay = this.add.rectangle(
+      0,
+      0,
+      width,
+      height,
+      Colors.background.overlay,
+      Colors.background.overlayAlpha
+    );
+    overlay.setOrigin(0);
 
     if (!this.sound.get('towerDefense')) {
       this.backgroundMusic = this.sound.add('towerDefense', {
@@ -26,9 +36,9 @@ export class MainMenuScene extends Phaser.Scene {
     this.add
       .bitmapText(width / 2, 150, 'towerDefenseFont', 'Tower Defense', 48)
       .setOrigin(0.5)
-      .setTint(0xffff00);
+      .setTint(Colors.text.title);
 
-    const playButton = new UIButton(
+    const playButton = new BaseButton(
       this,
       width / 2,
       height - 250,
