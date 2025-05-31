@@ -5,9 +5,9 @@ export const ProjectileConfig: Record<string, ProjectileStats> = {
     texture: 'basicBullet',
     speed: 300,
     sound: 'shoot',
-    displayWidth: 12,
-    displayHeight: 12,
-    scale: 0.5
+    displayWidth: 6,
+    displayHeight: 6,
+    scale: 0.2
   },
   explosive: {
     texture: 'explosiveBullet',

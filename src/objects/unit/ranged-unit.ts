@@ -8,21 +8,19 @@ export class RangedUnit extends BaseUnit {
 
     const config = UnitConfig.RangedUnit;
 
-    this.setTexture(config.textureKey, config.scale);
-    this.setPower(config.power);
-    this.setAttackSpeed(config.attackSpeed);
-    this.setRange(config.range);
-    this.setCost(config.cost);
-    this.setBulletType(config.bulletType);
+    this.applyConfig(config);
   }
 
-  public attack(target: Phaser.GameObjects.Sprite, time: number): boolean {
+  public override attack(
+    target: Phaser.GameObjects.Sprite,
+    time: number
+  ): boolean {
     const attacked = super.attack(target, time);
     if (attacked) {
-      if (this.scene.anims.exists('ranged-attack')) {
-        this.getSprite().play('ranged-attack');
+      if (this.scene.anims.exists(UnitConfig.RangedUnit.textureKey)) {
+        this.getSprite().play(UnitConfig.RangedUnit.textureKey);
       } else {
-        console.warn('Animation ranged-attack not found');
+        console.warn('Animation not found:', UnitConfig.RangedUnit.textureKey);
       }
     }
     return attacked;

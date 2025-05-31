@@ -1,0 +1,108 @@
+{
+  "textures": [
+    {
+      "image": "texture",
+      "format": "RGBA8888",
+      "size": { "w": 0, "h": 0 },
+      "scale": 1,
+      "frames": [
+        {
+          "filename": "Sniper-Slashing_000",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": { "w": 900, "h": 900 },
+          "spriteSourceSize": { "x": 0, "y": 0, "w": 900, "h": 900 },
+          "frame": { "x": 0, "y": 0, "w": 900, "h": 900 }
+        },
+        {
+          "filename": "Sniper-Slashing_001",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": { "w": 900, "h": 900 },
+          "spriteSourceSize": { "x": 0, "y": 0, "w": 900, "h": 900 },
+          "frame": { "x": 900, "y": 0, "w": 900, "h": 900 }
+        },
+        {
+          "filename": "Sniper-Slashing_002",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": { "w": 900, "h": 900 },
+          "spriteSourceSize": { "x": 0, "y": 0, "w": 900, "h": 900 },
+          "frame": { "x": 1800, "y": 0, "w": 900, "h": 900 }
+        },
+        {
+          "filename": "Sniper-Slashing_003",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": { "w": 900, "h": 900 },
+          "spriteSourceSize": { "x": 0, "y": 0, "w": 900, "h": 900 },
+          "frame": { "x": 0, "y": 900, "w": 900, "h": 900 }
+        },
+        {
+          "filename": "Sniper-Slashing_004",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": { "w": 900, "h": 900 },
+          "spriteSourceSize": { "x": 0, "y": 0, "w": 900, "h": 900 },
+          "frame": { "x": 900, "y": 900, "w": 900, "h": 900 }
+        },
+        {
+          "filename": "Sniper-Slashing_005",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": { "w": 900, "h": 900 },
+          "spriteSourceSize": { "x": 0, "y": 0, "w": 900, "h": 900 },
+          "frame": { "x": 1800, "y": 900, "w": 900, "h": 900 }
+        },
+        {
+          "filename": "Sniper-Slashing_006",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": { "w": 900, "h": 900 },
+          "spriteSourceSize": { "x": 0, "y": 0, "w": 900, "h": 900 },
+          "frame": { "x": 0, "y": 1800, "w": 900, "h": 900 }
+        },
+        {
+          "filename": "Sniper-Slashing_007",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": { "w": 900, "h": 900 },
+          "spriteSourceSize": { "x": 0, "y": 0, "w": 900, "h": 900 },
+          "frame": { "x": 900, "y": 1800, "w": 900, "h": 900 }
+        },
+        {
+          "filename": "Sniper-Slashing_008",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": { "w": 900, "h": 900 },
+          "spriteSourceSize": { "x": 0, "y": 0, "w": 900, "h": 900 },
+          "frame": { "x": 1800, "y": 1800, "w": 900, "h": 900 }
+        },
+        {
+          "filename": "Sniper-Slashing_009",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": { "w": 900, "h": 900 },
+          "spriteSourceSize": { "x": 0, "y": 0, "w": 900, "h": 900 },
+          "frame": { "x": 0, "y": 2700, "w": 900, "h": 900 }
+        },
+        {
+          "filename": "Sniper-Slashing_010",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": { "w": 900, "h": 900 },
+          "spriteSourceSize": { "x": 0, "y": 0, "w": 900, "h": 900 },
+          "frame": { "x": 900, "y": 2700, "w": 900, "h": 900 }
+        },
+        {
+          "filename": "Sniper-Slashing_011",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": { "w": 900, "h": 900 },
+          "spriteSourceSize": { "x": 0, "y": 0, "w": 900, "h": 900 },
+          "frame": { "x": 1800, "y": 2700, "w": 900, "h": 900 }
+        }
+      ]
+    }
+  ]
+}

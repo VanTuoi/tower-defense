@@ -78,9 +78,13 @@ export class GameScene extends Phaser.Scene {
       this.scene.stop('HeaderScene');
     });
 
-    MapView.drawMapBorders(this, this.gameWidth, this.gameHeight);
+    MapView.drawMapBorders(
+      this,
+      this.gameWidth,
+      this.gameHeight - CONST.SELECTION_AREA_HEIGHT
+    );
 
-    this.unitSelectionView.render();
+    this.unitSelectionView.render(this.unitManager.getAllowedUnits());
 
     this.input.on('pointerdown', (pointer: Phaser.Input.Pointer) => {
       const isInSelectionArea =
@@ -119,7 +123,9 @@ export class GameScene extends Phaser.Scene {
       enemyManager: this.enemyManager,
       gameStateController: this.gameStateController,
       gameStateManager: this.gameStateManager,
-      gameHeight: this.gameHeight - 100
+      gameHeight:
+        this.gameHeight -
+        (CONST.SELECTION_AREA_HEIGHT + CONST.HEADER_HEIGHT + CONST.FIELD_SIZE) // FIELD_SIZE: Map border
     });
 
     GameEndController.check({

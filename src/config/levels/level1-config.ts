@@ -11,9 +11,9 @@ export const level1Config: LevelConfig = {
       enemies: [
         {
           type: 'basicEnemy',
-          count: 1,
+          count: 100,
           spawnInterval: 1000,
-          statsModifier: { speed: 80 }
+          statsModifier: { speed: 60, hp: 20 }
         }
       ],
       allowedUnits: ['RangedUnit', 'SniperUnit']
