@@ -44,7 +44,7 @@ export abstract class BaseEnemy {
   }
 
   public move(delta: number): void {
-    this.sprite.y += (this.config.speed * delta) / 1000;
+    this.sprite.y += (this.speed * delta) / 1000;
     this.hpText.y = this.sprite.y - this.config.hpTextOffsetY!;
     this.hpText.x = this.sprite.x;
   }
@@ -77,14 +77,14 @@ export abstract class BaseEnemy {
   }
 
   public getRewardGold(): number {
-    return this.config.rewardGold ?? 0;
+    return this.rewardGold;
   }
 
   public isOffScreen(height: number): boolean {
     return this.sprite.y > height;
   }
 
-  public resizeSprite() {
+  public resizeSprite(): void {
     this.sprite.setDisplaySize(this.config.width!, this.config.height!);
   }
 }

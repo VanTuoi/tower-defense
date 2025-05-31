@@ -1,89 +1,81 @@
 import Phaser from 'phaser';
-import { enemyConfigs, level1Config } from '../config/index';
 import {
   AttackController,
   BulletCollisionController,
   EnemyEndChecker,
   GameEndController,
-  InputHandler
+  GameStateController,
+  LevelController,
+  UnitSelectionController
 } from '../controller';
+
+import { LevelConfig } from '../interfaces';
 import {
-  BulletManager,
   EnemyManager,
   FpsManager,
   GameStateManager,
-  UIManager,
+  ProjectileManager,
   UnitManager
 } from '../manager';
-import { getTotalEnemiesFromLevel } from '../utils';
-import { MapView } from '../view';
+import { MapView, UnitSelectionView } from '../view';
 
 export class GameScene extends Phaser.Scene {
-  private gameHeight!: number;
-  private gameWidth!: number;
+  private gameHeight: number;
+  private gameWidth: number;
 
-  private uiManager!: UIManager;
+  private unitSelectionView!: UnitSelectionView;
+
   private fpsManager!: FpsManager;
-  private gameStateManager!: GameStateManager;
-
   private enemyManager!: EnemyManager;
   private unitManager!: UnitManager;
-  private bulletManager!: BulletManager;
+  private projectileManager!: ProjectileManager;
+  private gameStateManager!: GameStateManager;
+
+  private gameStateController!: GameStateController;
+  private unitSelectionController!: UnitSelectionController;
 
   constructor() {
     super({ key: 'GameScene' });
   }
 
-  init() {
-    this.gameHeight = this.sys.canvas.height;
-    this.gameWidth = this.sys.canvas.width;
+  init(data: { levelConfig: LevelConfig }) {
+    this.gameHeight = this.scale.height;
+    this.gameWidth = this.scale.width;
+    const levelController = new LevelController(this, data.levelConfig);
 
-    const totalEnemies = getTotalEnemiesFromLevel(level1Config);
+    const {
+      gameStateController,
+      unitManager,
+      gameStateManager,
+      unitSelectionController,
+      unitSelectionView,
+      enemyManager,
+      projectileManager,
+      fpsManager
+    } = levelController.setup();
 
-    this.gameStateManager = new GameStateManager({
-      hp: level1Config.initialHp,
-      money: level1Config.initialMoney,
-      targetKills: totalEnemies
-    });
+    this.gameStateController = gameStateController;
+    this.unitManager = unitManager;
+    this.gameStateManager = gameStateManager;
+    this.unitSelectionController = unitSelectionController;
+    this.unitSelectionView = unitSelectionView;
+    this.enemyManager = enemyManager;
+    this.projectileManager = projectileManager;
+    this.fpsManager = fpsManager;
 
-    this.unitManager = new UnitManager(this);
-
-    this.enemyManager = new EnemyManager({
-      scene: this,
-      baseEnemyConfig: enemyConfigs,
-      levelConfig: level1Config,
-      onWaveStart: (waveIndex: number) => {
-        const allowed = level1Config.waves[waveIndex].allowedUnits;
-        if (allowed) {
-          this.unitManager.setAllowedUnits(allowed);
-        }
-      }
-    });
-
-    this.enemyManager.startFirstWave();
-
-    const firstWave = level1Config.waves[0];
-    this.unitManager.setAllowedUnits(firstWave.allowedUnits);
-
-    this.bulletManager = new BulletManager(this);
-    this.fpsManager = new FpsManager(this);
-    this.uiManager = new UIManager(
-      this,
-      this.gameStateManager.getMoney(),
-      this.gameStateManager.getHp()
-    );
+    enemyManager.startFirstWave();
   }
 
   create() {
-    MapView.drawMapBorders(this, this.gameWidth, this.gameHeight);
+    MapView.drawMapBorders(this, this.gameWidth, this.gameHeight, 100);
+
+    this.unitSelectionView.render();
 
     this.input.on('pointerdown', (pointer: Phaser.Input.Pointer) => {
-      InputHandler.handlePointerDown(
-        pointer,
-        this.unitManager,
-        this.gameStateManager,
-        this.uiManager
-      );
+      const isInSelectionArea = pointer.y >= this.gameHeight - 100;
+      if (!isInSelectionArea) {
+        this.unitSelectionController.handlePlacement(pointer.x, pointer.y);
+      }
     });
   }
 
@@ -94,31 +86,31 @@ export class GameScene extends Phaser.Scene {
 
     AttackController.handle({
       unitManager: this.unitManager,
-      bulletManager: this.bulletManager,
+      projectileManager: this.projectileManager,
       enemies,
       time,
       scene: this
     });
 
-    this.bulletManager.update(delta);
+    this.projectileManager.update(delta);
 
     BulletCollisionController.handle({
-      bulletManager: this.bulletManager,
+      projectileManager: this.projectileManager,
       enemyManager: this.enemyManager,
-      gameStateManager: this.gameStateManager,
-      uiManager: this.uiManager
+      gameStateController: this.gameStateController,
+      gameStateManager: this.gameStateManager
     });
 
     EnemyEndChecker.handle({
       enemyManager: this.enemyManager,
+      gameStateController: this.gameStateController,
       gameStateManager: this.gameStateManager,
-      uiManager: this.uiManager,
-      gameHeight: this.gameHeight
+      gameHeight: this.gameHeight - 100
     });
 
     GameEndController.check({
       scene: this,
-      gameStateManager: this.gameStateManager,
+      gameStateController: this.gameStateController,
       enemyManager: this.enemyManager
     });
   }

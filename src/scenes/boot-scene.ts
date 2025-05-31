@@ -1,22 +1,62 @@
 import Phaser from 'phaser';
 
 export class BootScene extends Phaser.Scene {
+  private loadingBar!: Phaser.GameObjects.Graphics;
+  private progressBar!: Phaser.GameObjects.Graphics;
+
   constructor() {
-    super({
-      key: 'BootScene'
-    });
+    super({ key: 'BootScene' });
   }
 
   preload(): void {
+    const { width, height } = this.sys.canvas;
+
+    this.loadingBar = this.add.graphics();
+    this.loadingBar.fillStyle(0xffffff, 1);
+    this.loadingBar.fillRect(width / 2 - 160, height / 2 - 25, 320, 50);
+
+    this.progressBar = this.add.graphics();
+
+    const loadingText = this.add
+      .text(width / 2, height / 2 - 50, 'Loading: 0%', {
+        fontSize: '30px',
+        color: '#ffffff'
+      })
+      .setOrigin(0.5);
+
+    this.load.on('progress', (value: number) => {
+      this.progressBar.clear();
+      this.progressBar.fillStyle(0x00ff00, 1);
+      this.progressBar.fillRect(
+        width / 2 - 150,
+        height / 2 - 15,
+        300 * value,
+        30
+      );
+      loadingText.setText(`Loading: ${(value * 100).toFixed(0)}%`);
+    });
+
+    this.load.on('complete', () => {
+      this.loadingBar.destroy();
+      this.progressBar.destroy();
+      loadingText.destroy();
+
+      this.scene.start('MainMenuScene');
+    });
+
     this.load.bitmapFont(
       'towerDefenseFont',
-      './assets/fonts/font.png',
-      './assets/fonts/font.fnt'
+      'assets/fonts/font.png',
+      'assets/fonts/font.fnt'
     );
-    this.load.audio('shoot', './assets/audio/shoot.mp3');
-    this.load.image('bullet', './assets/images/bullet.png');
-    this.load.image('border', './assets/images/border.png');
-    this.load.image('enemy', './assets/images/enemy.png');
+    this.load.audio('shoot', 'assets/audio/shoot.mp3');
+    this.load.audio('towerDefense', 'assets/audio/tower-defense.mp3');
+    this.load.image('background', 'assets/images/background.png');
+    this.load.image('cursorArrow', 'assets/images/cursor-arrow.png');
+    this.load.image('basicBullet', 'assets/images/basic-bullet.png');
+    this.load.image('explosiveBullet', 'assets/images/explosive-bullet.png');
+    this.load.image('border', 'assets/images/border.png');
+    this.load.image('enemy', 'assets/images/enemy.png');
 
     this.load.atlas(
       'basic-enemy',
@@ -103,7 +143,5 @@ export class BootScene extends Phaser.Scene {
       frameRate: 12,
       repeat: 0
     });
-
-    this.scene.start('MainMenuScene');
   }
 }

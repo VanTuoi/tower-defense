@@ -1,18 +1,26 @@
-import { EnemyConfig } from '../interfaces';
+import { EnemyConfig, EnemyType } from '../interfaces';
 
-export const enemyConfigs: Record<string, EnemyConfig> = {
+export const enemyConfigs: Record<EnemyType, EnemyConfig> = {
   basicEnemy: {
     texture: 'basicEnemy',
-    hp: 50,
-    speed: 50,
+    hp: 100,
+    speed: 100,
     power: 10,
-    rewardGold: 5
+    rewardGold: 5,
+    width: 128,
+    height: 128,
+    hpTextOffsetY: 30,
+    hpTextFontSize: 20
   },
   skeletonCrusader: {
     texture: 'skeletonCrusader',
-    hp: 200,
-    speed: 70,
+    hp: 150,
+    speed: 80,
     power: 20,
-    rewardGold: 15
+    rewardGold: 10,
+    width: 128,
+    height: 128,
+    hpTextOffsetY: 30,
+    hpTextFontSize: 20
   }
 };

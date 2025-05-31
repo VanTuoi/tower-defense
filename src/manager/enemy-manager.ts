@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
+import { EnemyFactory } from '../factory';
 import { EnemyConfig, EnemyType, LevelConfig } from '../interfaces';
-import { BaseEnemy, BasicEnemy, SkeletonCrusader } from '../objects';
+import { BaseEnemy } from '../objects';
 
 type EnemyManagerProps = {
   scene: Phaser.Scene;
@@ -12,6 +13,7 @@ type EnemyManagerProps = {
 export class EnemyManager {
   private scene: Phaser.Scene;
   private baseEnemyConfig: Record<EnemyType, EnemyConfig>;
+  private enemyFactory: EnemyFactory;
 
   private onWaveStart?: (waveIndex: number) => void;
   private levelConfig: LevelConfig;
@@ -29,6 +31,7 @@ export class EnemyManager {
     this.scene = props.scene;
     this.baseEnemyConfig = props.baseEnemyConfig;
     this.levelConfig = props.levelConfig;
+    this.enemyFactory = new EnemyFactory(this.scene, props.baseEnemyConfig);
     this.onWaveStart = props.onWaveStart;
   }
 
@@ -55,22 +58,7 @@ export class EnemyManager {
     type: EnemyType,
     statsModifier?: Partial<EnemyConfig>
   ): BaseEnemy {
-    const baseConfig = this.baseEnemyConfig[type];
-    if (!baseConfig) throw new Error(`Enemy config for type ${type} not found`);
-
-    const finalConfig = { ...baseConfig, ...statsModifier };
-
-    const x = Phaser.Math.Between(100, this.scene.sys.canvas.width - 100);
-    const y = 100;
-
-    switch (type) {
-      case 'basicEnemy':
-        return new BasicEnemy(this.scene, x, y, finalConfig);
-      case 'skeletonCrusader':
-        return new SkeletonCrusader(this.scene, x, y, finalConfig);
-      default:
-        return new BasicEnemy(this.scene, x, y, finalConfig);
-    }
+    return this.enemyFactory.createEnemy(type, statsModifier);
   }
 
   public update(time: number, delta: number): BaseEnemy[] {
@@ -163,11 +151,6 @@ export class EnemyManager {
   }
 
   public isAllWavesCompleted(): boolean {
-    console.log('Checking all waves completed:', {
-      currentWaveIndex: this.currentWaveIndex,
-      totalWaves: this.levelConfig.waves.length,
-      enemiesRemaining: this.enemies.length
-    });
     return (
       this.currentWaveIndex >= this.levelConfig.waves.length &&
       this.enemies.length === 0

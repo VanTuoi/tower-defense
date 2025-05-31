@@ -1,25 +1,25 @@
 import {
-  BulletManager,
   EnemyManager,
   GameStateManager,
-  UIManager
+  ProjectileManager
 } from '../../manager';
+import { GameStateController } from '../game-state-controller';
 
 interface BulletCollisionProps {
-  bulletManager: BulletManager;
+  projectileManager: ProjectileManager;
   enemyManager: EnemyManager;
+  gameStateController: GameStateController;
   gameStateManager: GameStateManager;
-  uiManager: UIManager;
 }
 
 export class BulletCollisionController {
   static handle({
-    bulletManager,
+    projectileManager,
     enemyManager,
-    gameStateManager,
-    uiManager
+    gameStateController,
+    gameStateManager
   }: BulletCollisionProps) {
-    bulletManager.getBullets().forEach((bullet) => {
+    projectileManager.getBullets().forEach((bullet) => {
       const bulletSprite = bullet.getSprite();
       const target = bullet.getTarget();
 
@@ -38,13 +38,13 @@ export class BulletCollisionController {
           bullet.getDamage()
         );
 
-        bulletManager.removeBullet(bullet);
+        projectileManager.removeBullet(bullet);
 
         if (killedEnemy) {
           const gold = killedEnemy.getRewardGold();
-          gameStateManager.addMoney(gold);
-          gameStateManager.addKill();
-          uiManager.updateMoney(gameStateManager.getMoney());
+          gameStateController.addMoney(gold);
+          gameStateController.addKill();
+          gameStateManager.updateMoney(gameStateController.getMoney());
         }
       }
     });

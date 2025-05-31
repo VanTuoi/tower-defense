@@ -1,23 +1,24 @@
-import { EnemyManager, GameStateManager, UIManager } from '../../manager';
+import { EnemyManager, GameStateManager } from '../../manager';
+import { GameStateController } from '../game-state-controller';
 
 interface EnemyEndCheckerProps {
   enemyManager: EnemyManager;
+  gameStateController: GameStateController;
   gameStateManager: GameStateManager;
-  uiManager: UIManager;
   gameHeight: number;
 }
 
 export class EnemyEndChecker {
   static handle({
     enemyManager,
+    gameStateController,
     gameStateManager,
-    uiManager,
     gameHeight
   }: EnemyEndCheckerProps) {
     enemyManager.getEnemies().forEach((enemy, index) => {
       if (enemy.getSprite().y >= gameHeight - 32) {
-        gameStateManager.reduceHp(enemy.getPower());
-        uiManager.updateHp(gameStateManager.getHp());
+        gameStateController.reduceHp(enemy.getPower());
+        gameStateManager.updateHp(gameStateController.getHp());
 
         enemy.getSprite().destroy();
         enemy.getHpText().destroy();

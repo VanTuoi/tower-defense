@@ -1,61 +1,33 @@
-interface GameManagerConfig {
-  hp: number;
-  money: number;
-  targetKills: number;
-}
+import Phaser from 'phaser';
 
 export class GameStateManager {
-  private hp: number;
-  private money: number;
-  private enemiesKilled: number;
-  private targetKills: number;
+  private scene: Phaser.Scene;
+  private moneyText: Phaser.GameObjects.BitmapText;
+  private hpText: Phaser.GameObjects.BitmapText;
 
-  constructor(config: GameManagerConfig) {
-    this.hp = config.hp;
-    this.money = config.money;
-    this.enemiesKilled = 0;
-    this.targetKills = config.targetKills;
+  constructor(scene: Phaser.Scene, initMoney: number, initHp: number) {
+    this.scene = scene;
+
+    this.moneyText = this.scene.add
+      .bitmapText(
+        this.scene.sys.canvas.width - 200,
+        60,
+        'towerDefenseFont',
+        'Money: ' + initMoney,
+        24
+      )
+      .setOrigin(0.5);
+
+    this.hpText = this.scene.add
+      .bitmapText(200, 60, 'towerDefenseFont', 'HP: ' + initHp, 24)
+      .setOrigin(0.5);
   }
 
-  public reduceHp(amount: number) {
-    this.hp = Math.max(0, this.hp - amount);
+  updateMoney(money: number) {
+    this.moneyText.setText('Money: ' + money);
   }
 
-  public addMoney(amount: number) {
-    this.money += amount;
-  }
-
-  public spendMoney(amount: number): boolean {
-    if (this.money >= amount) {
-      this.money -= amount;
-      return true;
-    }
-    return false;
-  }
-
-  public addKill() {
-    this.enemiesKilled++;
-  }
-
-  public isWinByKill(): boolean {
-    return this.enemiesKilled >= this.targetKills;
-  }
-
-  public getHp() {
-    return this.hp;
-  }
-
-  public getMoney() {
-    return this.money;
-  }
-
-  public getEnemiesKilled() {
-    console.log('getEnemiesKilled', this.enemiesKilled);
-    return this.enemiesKilled;
-  }
-
-  public getTargetKills() {
-    console.log('getTargetKills', this.targetKills);
-    return this.targetKills;
+  updateHp(hp: number) {
+    this.hpText.setText('HP: ' + hp);
   }
 }

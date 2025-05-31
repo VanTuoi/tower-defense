@@ -1,8 +1,8 @@
-import { LevelConfig } from '../interfaces';
+import { LevelConfig } from '../../interfaces';
 
 export const level1Config: LevelConfig = {
   initialHp: 100,
-  initialMoney: 100,
+  initialMoney: 1000,
   waves: [
     {
       waveDelay: 1000,
@@ -14,7 +14,7 @@ export const level1Config: LevelConfig = {
           statsModifier: { speed: 80 }
         }
       ],
-      allowedUnits: ['RangedUnit']
+      allowedUnits: ['RangedUnit', 'SniperUnit']
     },
     {
       waveDelay: 2000,
@@ -32,7 +32,7 @@ export const level1Config: LevelConfig = {
           statsModifier: { speed: 150 }
         }
       ],
-      allowedUnits: ['RangedUnit']
+      allowedUnits: ['RangedUnit', 'SniperUnit']
     }
   ]
 };

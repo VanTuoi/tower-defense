@@ -1,4 +1,4 @@
-import { BaseEnemy } from '../objects/enemies/base-enemy';
+import { BaseEnemy } from '../objects';
 
 export type EnemyType = 'basicEnemy' | 'skeletonCrusader';
 
