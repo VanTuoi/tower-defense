@@ -4,7 +4,7 @@ export const UnitConfig: Record<string, UnitStats> = {
   RangedUnit: {
     cost: 50,
     power: 10,
-    attackSpeed: 1,
+    attackSpeed: 2,
     range: 300,
     textureKey: 'ranged-attack',
     idleTextureKey: 'ranged',

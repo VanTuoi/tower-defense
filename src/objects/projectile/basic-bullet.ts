@@ -8,7 +8,7 @@ export class BasicBullet extends BaseProjectile {
     y: number,
     target: Phaser.GameObjects.Sprite
   ) {
-    super(scene, x, y, 'basicBullet', target, 0, 0);
+    super(scene, x, y, 'fire-projectile-anim', target, 0, 0);
   }
 
   update(delta: number): void {
@@ -21,12 +21,17 @@ export class BasicBullet extends BaseProjectile {
     const dy = this.target.y - this.sprite.y;
     const dist = Math.sqrt(dx * dx + dy * dy);
 
-    if (dist < 32) return;
+    if (dist < 32) {
+      this.destroy();
+      return;
+    }
 
     const velX = (dx / dist) * this.speed * (delta / 1000);
     const velY = (dy / dist) * this.speed * (delta / 1000);
 
     this.sprite.x += velX;
     this.sprite.y += velY;
+
+    this.sprite.rotation = Math.atan2(dy, dx);
   }
 }

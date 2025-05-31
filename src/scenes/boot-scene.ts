@@ -53,6 +53,8 @@ export class BootScene extends Phaser.Scene {
       'assets/fonts/font.fnt'
     );
     this.load.audio('shoot', 'assets/audio/shoot.mp3');
+    this.load.audio('fire', 'assets/audio/fire.wav');
+    this.load.audio('water', 'assets/audio/water.wav');
     this.load.audio('towerDefense', 'assets/audio/tower-defense.mp3');
 
     this.load.image('default-icon', 'assets/images/levels/icon-level-1.png');
@@ -67,6 +69,14 @@ export class BootScene extends Phaser.Scene {
     this.load.image('enemy', 'assets/images/enemy.png');
     this.load.image('ranged', 'assets/images/ranged.png');
     this.load.image('sniper', 'assets/images/sniper.png');
+
+    this.load.image('like-projectile', 'assets/images/projectile/like.png');
+
+    this.load.atlas(
+      'water-projectile',
+      'assets/images/projectile/water.png',
+      'assets/images/projectile/water.json'
+    );
 
     this.load.atlas(
       'fire-projectile',
@@ -110,15 +120,27 @@ export class BootScene extends Phaser.Scene {
 
   create(): void {
     this.anims.create({
-      key: 'fire-projectile',
+      key: 'water-projectile-anim',
+      frames: this.anims.generateFrameNames('water-projectile', {
+        prefix: 'water1',
+        start: 0,
+        end: 20,
+        zeroPad: 5
+      }),
+      frameRate: 20,
+      repeat: -1
+    });
+
+    this.anims.create({
+      key: 'fire-projectile-anim',
       frames: this.anims.generateFrameNames('fire-projectile', {
         prefix: '',
         start: 0,
         end: 40,
         zeroPad: 2
       }),
-      frameRate: 12,
-      repeat: 0
+      frameRate: 41,
+      repeat: -1
     });
 
     this.anims.create({

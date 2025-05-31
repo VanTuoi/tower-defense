@@ -4,6 +4,7 @@ export * from './enemies/skeleton-crusader';
 export * from './projectile/base-projectile';
 export * from './projectile/basic-bullet';
 export * from './projectile/explosive-bullet';
+export * from './projectile/like-bullet';
 export * from './unit/base-unit';
 export * from './unit/ranged-unit';
 export * from './unit/sniper-unit';

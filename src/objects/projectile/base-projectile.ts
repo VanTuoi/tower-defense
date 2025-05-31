@@ -28,6 +28,10 @@ export abstract class BaseProjectile {
 
     this.sprite = this.scene.add.sprite(x, y, texture);
 
+    if (this.scene.anims.exists(texture)) {
+      this.sprite.anims.play(texture, true);
+    }
+
     if (displayWidth !== undefined && displayHeight !== undefined) {
       this.sprite.setDisplaySize(displayWidth, displayHeight);
     } else {

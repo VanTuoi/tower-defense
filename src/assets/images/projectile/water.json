@@ -1,0 +1,180 @@
+{
+  "textures": [
+    {
+      "image": "texture",
+      "format": "RGBA8888",
+      "size": { "w": 0, "h": 0 },
+      "scale": 1,
+      "frames": [
+        {
+          "filename": "water100000",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": { "w": 1800, "h": 1200 },
+          "spriteSourceSize": { "x": 0, "y": 0, "w": 1800, "h": 1200 },
+          "frame": { "x": 0, "y": 0, "w": 1800, "h": 1200 }
+        },
+        {
+          "filename": "water100001",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": { "w": 1800, "h": 1200 },
+          "spriteSourceSize": { "x": 0, "y": 0, "w": 1800, "h": 1200 },
+          "frame": { "x": 1800, "y": 0, "w": 1800, "h": 1200 }
+        },
+        {
+          "filename": "water100002",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": { "w": 1800, "h": 1200 },
+          "spriteSourceSize": { "x": 0, "y": 0, "w": 1800, "h": 1200 },
+          "frame": { "x": 3600, "y": 0, "w": 1800, "h": 1200 }
+        },
+        {
+          "filename": "water100003",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": { "w": 1800, "h": 1200 },
+          "spriteSourceSize": { "x": 0, "y": 0, "w": 1800, "h": 1200 },
+          "frame": { "x": 0, "y": 1200, "w": 1800, "h": 1200 }
+        },
+        {
+          "filename": "water100004",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": { "w": 1800, "h": 1200 },
+          "spriteSourceSize": { "x": 0, "y": 0, "w": 1800, "h": 1200 },
+          "frame": { "x": 1800, "y": 1200, "w": 1800, "h": 1200 }
+        },
+        {
+          "filename": "water100005",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": { "w": 1800, "h": 1200 },
+          "spriteSourceSize": { "x": 0, "y": 0, "w": 1800, "h": 1200 },
+          "frame": { "x": 3600, "y": 1200, "w": 1800, "h": 1200 }
+        },
+        {
+          "filename": "water100006",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": { "w": 1800, "h": 1200 },
+          "spriteSourceSize": { "x": 0, "y": 0, "w": 1800, "h": 1200 },
+          "frame": { "x": 0, "y": 2400, "w": 1800, "h": 1200 }
+        },
+        {
+          "filename": "water100007",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": { "w": 1800, "h": 1200 },
+          "spriteSourceSize": { "x": 0, "y": 0, "w": 1800, "h": 1200 },
+          "frame": { "x": 1800, "y": 2400, "w": 1800, "h": 1200 }
+        },
+        {
+          "filename": "water100008",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": { "w": 1800, "h": 1200 },
+          "spriteSourceSize": { "x": 0, "y": 0, "w": 1800, "h": 1200 },
+          "frame": { "x": 3600, "y": 2400, "w": 1800, "h": 1200 }
+        },
+        {
+          "filename": "water100009",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": { "w": 1800, "h": 1200 },
+          "spriteSourceSize": { "x": 0, "y": 0, "w": 1800, "h": 1200 },
+          "frame": { "x": 0, "y": 3600, "w": 1800, "h": 1200 }
+        },
+        {
+          "filename": "water100010",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": { "w": 1800, "h": 1200 },
+          "spriteSourceSize": { "x": 0, "y": 0, "w": 1800, "h": 1200 },
+          "frame": { "x": 1800, "y": 3600, "w": 1800, "h": 1200 }
+        },
+        {
+          "filename": "water100011",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": { "w": 1800, "h": 1200 },
+          "spriteSourceSize": { "x": 0, "y": 0, "w": 1800, "h": 1200 },
+          "frame": { "x": 3600, "y": 3600, "w": 1800, "h": 1200 }
+        },
+        {
+          "filename": "water100012",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": { "w": 1800, "h": 1200 },
+          "spriteSourceSize": { "x": 0, "y": 0, "w": 1800, "h": 1200 },
+          "frame": { "x": 0, "y": 4800, "w": 1800, "h": 1200 }
+        },
+        {
+          "filename": "water100013",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": { "w": 1800, "h": 1200 },
+          "spriteSourceSize": { "x": 0, "y": 0, "w": 1800, "h": 1200 },
+          "frame": { "x": 1800, "y": 4800, "w": 1800, "h": 1200 }
+        },
+        {
+          "filename": "water100014",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": { "w": 1800, "h": 1200 },
+          "spriteSourceSize": { "x": 0, "y": 0, "w": 1800, "h": 1200 },
+          "frame": { "x": 3600, "y": 4800, "w": 1800, "h": 1200 }
+        },
+        {
+          "filename": "water100015",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": { "w": 1800, "h": 1200 },
+          "spriteSourceSize": { "x": 0, "y": 0, "w": 1800, "h": 1200 },
+          "frame": { "x": 0, "y": 6000, "w": 1800, "h": 1200 }
+        },
+        {
+          "filename": "water100016",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": { "w": 1800, "h": 1200 },
+          "spriteSourceSize": { "x": 0, "y": 0, "w": 1800, "h": 1200 },
+          "frame": { "x": 1800, "y": 6000, "w": 1800, "h": 1200 }
+        },
+        {
+          "filename": "water100017",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": { "w": 1800, "h": 1200 },
+          "spriteSourceSize": { "x": 0, "y": 0, "w": 1800, "h": 1200 },
+          "frame": { "x": 3600, "y": 6000, "w": 1800, "h": 1200 }
+        },
+        {
+          "filename": "water100018",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": { "w": 1800, "h": 1200 },
+          "spriteSourceSize": { "x": 0, "y": 0, "w": 1800, "h": 1200 },
+          "frame": { "x": 0, "y": 7200, "w": 1800, "h": 1200 }
+        },
+        {
+          "filename": "water100019",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": { "w": 1800, "h": 1200 },
+          "spriteSourceSize": { "x": 0, "y": 0, "w": 1800, "h": 1200 },
+          "frame": { "x": 1800, "y": 7200, "w": 1800, "h": 1200 }
+        },
+        {
+          "filename": "water100020",
+          "rotated": false,
+          "trimmed": false,
+          "sourceSize": { "w": 1800, "h": 1200 },
+          "spriteSourceSize": { "x": 0, "y": 0, "w": 1800, "h": 1200 },
+          "frame": { "x": 3600, "y": 7200, "w": 1800, "h": 1200 }
+        }
+      ]
+    }
+  ]
+}
