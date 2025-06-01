@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { UnitRegistry } from '../factory';
+import { UnitRegistry } from '../factories';
 import { BaseUnit } from '../objects';
 
 export class UnitManager {

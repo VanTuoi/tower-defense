@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
 import { UnitConfig } from '../config';
-import { UnitSelectionController } from '../controller';
+import { UnitSelectionController } from '../controllers';
 
 export class UnitSelectionView {
   private scene: Phaser.Scene;

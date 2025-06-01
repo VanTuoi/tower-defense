@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { HeaderGameScene } from '../view';
+import { HeaderGameScene } from '../views';
 
 export class HeaderScene extends Phaser.Scene {
   private headerGameScene!: HeaderGameScene;

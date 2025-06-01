@@ -22,9 +22,7 @@ export abstract class BaseEnemy {
       ...config
     };
 
-    this.sprite = scene.add
-      .sprite(x, y, config.texture || 'enemy')
-      .setOrigin(0.5);
+    this.sprite = scene.add.sprite(x, y, config.texture).setOrigin(0.5);
 
     this.sprite.setDisplaySize(this.config.width!, this.config.height!);
 

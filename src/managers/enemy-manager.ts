@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { EnemyFactory } from '../factory';
+import { EnemyFactory } from '../factories';
 import { EnemyConfig, EnemyType, LevelConfig } from '../interfaces';
 import { BaseEnemy } from '../objects';
 

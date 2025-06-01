@@ -1,5 +1,5 @@
 import { Colors } from '../config';
-import { BaseButton } from '../view';
+import { BaseButton } from '../views';
 
 type WinSceneProps = {
   enemiesKilled: number;

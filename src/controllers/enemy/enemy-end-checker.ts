@@ -1,4 +1,4 @@
-import { EnemyManager, GameStateManager } from '../../manager';
+import { EnemyManager, GameStateManager } from '../../managers';
 import { GameStateController } from '../game-state-controller';
 
 interface EnemyEndCheckerProps {

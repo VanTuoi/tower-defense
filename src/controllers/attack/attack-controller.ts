@@ -1,4 +1,4 @@
-import { ProjectileManager, UnitManager } from '../../manager';
+import { ProjectileManager, UnitManager } from '../../managers';
 import { BaseEnemy } from '../../objects';
 import { UnitAttackController } from './unit-attack-controller';
 
