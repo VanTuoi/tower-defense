@@ -7,8 +7,8 @@ export const enemyConfigs: Record<EnemyType, EnemyConfig> = {
     speed: 100,
     power: 10,
     rewardGold: 5,
-    width: 128,
-    height: 128,
+    width: 156,
+    height: 156,
     hpTextOffsetY: 30,
     hpTextFontSize: 20
   },
@@ -18,8 +18,8 @@ export const enemyConfigs: Record<EnemyType, EnemyConfig> = {
     speed: 80,
     power: 20,
     rewardGold: 10,
-    width: 128,
-    height: 128,
+    width: 156,
+    height: 156,
     hpTextOffsetY: 30,
     hpTextFontSize: 20
   }

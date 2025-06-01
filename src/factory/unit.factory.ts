@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
 import { UnitConfig } from '../config';
-import { BaseUnit, RangedUnit, SniperUnit } from '../objects';
+import { BaseUnit, RangedUnit, SniperUnit, TankerUnit } from '../objects';
 
 type UnitConstructor = new (
   scene: Phaser.Scene,
@@ -10,7 +10,8 @@ type UnitConstructor = new (
 
 export const UnitRegistry: Record<string, UnitConstructor> = {
   RangedUnit,
-  SniperUnit
+  SniperUnit,
+  TankerUnit
 };
 
 export class UnitFactory {
@@ -22,6 +23,7 @@ export class UnitFactory {
   ): BaseUnit {
     const UnitClass = UnitRegistry[type];
     const config = UnitConfig[type];
+    console.log('config', config);
 
     if (!UnitClass || !config) {
       console.warn(`Unit type "${type}" không hợp lệ, tạo RangedUnit mặc định`);
@@ -29,7 +31,6 @@ export class UnitFactory {
       fallbackUnit.applyConfig(UnitConfig['RangedUnit']);
       return fallbackUnit;
     }
-
     const unit = new UnitClass(scene, x, y);
     unit.applyConfig(config);
     return unit;
