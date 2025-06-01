@@ -8,3 +8,4 @@ export * from './projectile/like-bullet';
 export * from './unit/base-unit';
 export * from './unit/ranged-unit';
 export * from './unit/sniper-unit';
+export * from './unit/tanker-unit';

@@ -20,9 +20,9 @@ export const ProjectileConfig: Record<string, ProjectileStats> = {
   like: {
     texture: 'like-projectile',
     speed: 300,
-    sound: 'fire',
+    sound: 'like',
     displayWidth: 16,
     displayHeight: 16,
-    scale: 0.15
+    scale: 0.075
   }
 };

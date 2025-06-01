@@ -55,6 +55,7 @@ export class BootScene extends Phaser.Scene {
     this.load.audio('shoot', 'assets/audio/shoot.mp3');
     this.load.audio('fire', 'assets/audio/fire.wav');
     this.load.audio('water', 'assets/audio/water.wav');
+    this.load.audio('like', 'assets/audio/like.wav');
     this.load.audio('towerDefense', 'assets/audio/tower-defense.mp3');
 
     this.load.image('default-icon', 'assets/images/levels/icon-level-1.png');
@@ -69,6 +70,7 @@ export class BootScene extends Phaser.Scene {
     this.load.image('enemy', 'assets/images/enemy.png');
     this.load.image('ranged', 'assets/images/ranged.png');
     this.load.image('sniper', 'assets/images/sniper.png');
+    this.load.image('tanker', 'assets/images/tanker.png');
 
     this.load.image('like-projectile', 'assets/images/projectile/like.png');
 
@@ -82,6 +84,12 @@ export class BootScene extends Phaser.Scene {
       'fire-projectile',
       'assets/images/projectile/fire.png',
       'assets/images/projectile/fire.json'
+    );
+
+    this.load.atlas(
+      'tanker-attack',
+      'assets/images/tanker-attack.png',
+      'assets/images/tanker-attack.json'
     );
 
     this.load.atlas(
@@ -141,6 +149,18 @@ export class BootScene extends Phaser.Scene {
       }),
       frameRate: 41,
       repeat: -1
+    });
+
+    this.anims.create({
+      key: 'tanker-attack',
+      frames: this.anims.generateFrameNames('tanker-attack', {
+        prefix: '',
+        start: 0,
+        end: 4,
+        zeroPad: 2
+      }),
+      frameRate: 8,
+      repeat: 0
     });
 
     this.anims.create({

@@ -24,5 +24,17 @@ export const UnitConfig: Record<string, UnitStats> = {
     displayWidth: 128,
     displayHeight: 128,
     scale: 1.5
+  },
+  TankerUnit: {
+    cost: 100,
+    power: 50,
+    attackSpeed: 3,
+    range: 400,
+    textureKey: 'tanker-attack',
+    idleTextureKey: 'tanker',
+    bulletType: 'like',
+    displayWidth: 96,
+    displayHeight: 96,
+    scale: 1.1
   }
 };
