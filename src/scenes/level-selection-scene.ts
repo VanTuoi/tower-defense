@@ -1,5 +1,5 @@
 import { Colors, level1Config, level2Config } from '../config';
-import { BackButton } from '../view';
+import { BackButton } from '../views';
 
 export class LevelSelectionScene extends Phaser.Scene {
   private selectedIndex = 0;

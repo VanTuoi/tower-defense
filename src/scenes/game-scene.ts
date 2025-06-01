@@ -7,7 +7,7 @@ import {
   GameStateController,
   LevelController,
   UnitSelectionController
-} from '../controller';
+} from '../controllers';
 
 import { CONST } from '../const/const';
 import { LevelConfig } from '../interfaces';
@@ -17,8 +17,8 @@ import {
   GameStateManager,
   ProjectileManager,
   UnitManager
-} from '../manager';
-import { MapView, UnitSelectionView } from '../view';
+} from '../managers';
+import { MapView, UnitSelectionView } from '../views';
 
 export class GameScene extends Phaser.Scene {
   private gameHeight: number;

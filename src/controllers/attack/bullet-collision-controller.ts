@@ -2,7 +2,7 @@ import {
   EnemyManager,
   GameStateManager,
   ProjectileManager
-} from '../../manager';
+} from '../../managers';
 import { GameStateController } from '../game-state-controller';
 
 interface BulletCollisionProps {

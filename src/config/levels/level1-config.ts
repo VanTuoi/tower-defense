@@ -12,17 +12,17 @@ export const level1Config: LevelConfig = {
         {
           type: 'basicEnemy',
           count: 5,
-          spawnInterval: 1000,
+          spawnInterval: 2000,
           statsModifier: { speed: 60, hp: 20, power: 10 }
         },
         {
           type: 'skeletonCrusader',
           count: 10,
-          spawnInterval: 500,
+          spawnInterval: 5000,
           statsModifier: { speed: 65, hp: 25 }
         }
       ],
-      allowedUnits: ['RangedUnit', 'SniperUnit', 'TankerUnit']
+      allowedUnits: ['RangedUnit', 'SniperUnit']
     },
     {
       waveDelay: 1000,
@@ -30,23 +30,17 @@ export const level1Config: LevelConfig = {
         {
           type: 'basicEnemy',
           count: 2,
-          spawnInterval: 100,
+          spawnInterval: 1000,
           statsModifier: { speed: 80, hp: 100 }
         },
         {
           type: 'skeletonCrusader',
           count: 4,
-          spawnInterval: 500,
+          spawnInterval: 2000,
           statsModifier: { speed: 65, hp: 125 }
-        },
-        {
-          type: 'skeletonCrusader',
-          count: 15,
-          spawnInterval: 500,
-          statsModifier: { speed: 65, hp: 200 }
         }
       ],
-      allowedUnits: ['RangedUnit', 'SniperUnit', 'TankerUnit']
+      allowedUnits: ['RangedUnit', 'SniperUnit']
     }
   ]
 };

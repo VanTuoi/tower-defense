@@ -6,10 +6,10 @@ import {
   GameStateManager,
   ProjectileManager,
   UnitManager
-} from '../manager';
+} from '../managers';
 import { GameScene } from '../scenes';
 import { getTotalEnemiesFromLevel } from '../utils';
-import { UnitSelectionView } from '../view';
+import { UnitSelectionView } from '../views';
 import { GameStateController } from './game-state-controller';
 import { UnitSelectionController } from './unit-selection-controller';
 

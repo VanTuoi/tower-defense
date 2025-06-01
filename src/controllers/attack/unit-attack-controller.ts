@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
-import { BulletFactory } from '../../factory';
-import { UnitManager } from '../../manager';
+import { BulletFactory } from '../../factories';
+import { UnitManager } from '../../managers';
 import { BaseEnemy, BaseProjectile } from '../../objects';
 
 export class UnitAttackController {

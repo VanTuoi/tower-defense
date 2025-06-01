@@ -52,81 +52,78 @@ export class BootScene extends Phaser.Scene {
       'assets/fonts/font.png',
       'assets/fonts/font.fnt'
     );
-    this.load.audio('shoot', 'assets/audio/shoot.mp3');
-    this.load.audio('fire', 'assets/audio/fire.wav');
-    this.load.audio('water', 'assets/audio/water.wav');
-    this.load.audio('like', 'assets/audio/like.wav');
-    this.load.audio('towerDefense', 'assets/audio/tower-defense.mp3');
 
+    // game load
+    this.load.audio('towerDefense', 'assets/audio/game/tower-defense.mp3');
+    this.load.image('background', 'assets/images/game/background.png');
+    this.load.image('border', 'assets/images/game/map-border.png');
+
+    // level
     this.load.image('default-icon', 'assets/images/levels/icon-level-1.png');
     this.load.image('icon-level-1', 'assets/images/levels/icon-level-1.png');
     this.load.image('icon-level-2', 'assets/images/levels/icon-level-2.png');
 
-    this.load.image('background', 'assets/images/background.png');
-    this.load.image('cursorArrow', 'assets/images/cursor-arrow.png');
-    this.load.image('basicBullet', 'assets/images/basic-bullet.png');
-    this.load.image('explosiveBullet', 'assets/images/explosive-bullet.png');
-    this.load.image('border', 'assets/images/border.png');
-    this.load.image('enemy', 'assets/images/enemy.png');
-    this.load.image('ranged', 'assets/images/ranged.png');
-    this.load.image('sniper', 'assets/images/sniper.png');
-    this.load.image('tanker', 'assets/images/tanker.png');
-
-    this.load.image('like-projectile', 'assets/images/projectile/like.png');
-
+    // projectile load
+    this.load.audio('like', 'assets/audio/projectiles/like.wav');
+    this.load.image('like-projectile', 'assets/images/projectiles/like.png');
+    this.load.audio('water', 'assets/audio/projectiles/water.wav');
     this.load.atlas(
       'water-projectile',
-      'assets/images/projectile/water.png',
-      'assets/images/projectile/water.json'
+      'assets/images/projectiles/water.png',
+      'assets/images/projectiles/water.json'
     );
-
+    this.load.audio('fire', 'assets/audio/projectiles/fire.wav');
     this.load.atlas(
       'fire-projectile',
-      'assets/images/projectile/fire.png',
-      'assets/images/projectile/fire.json'
+      'assets/images/projectiles/fire.png',
+      'assets/images/projectiles/fire.json'
     );
 
+    // unit load
+    this.load.image('tanker', 'assets/images/units/tanker.png');
     this.load.atlas(
       'tanker-attack',
-      'assets/images/tanker-attack.png',
-      'assets/images/tanker-attack.json'
+      'assets/images/units/tanker-attack.png',
+      'assets/images/units/tanker-attack.json'
     );
-
+    this.load.image('sniper', 'assets/images/units/sniper.png');
     this.load.atlas(
       'sniper-attack',
-      'assets/images/sniper-attack.png',
-      'assets/images/sniper-attack.json'
+      'assets/images/units/sniper-attack.png',
+      'assets/images/units/sniper-attack.json'
     );
-
+    this.load.image('ranged', 'assets/images/units/ranged.png');
     this.load.atlas(
       'ranged-attack',
-      'assets/images/ranged-attack.png',
-      'assets/images/ranged-attack.json'
+      'assets/images/units/ranged-attack.png',
+      'assets/images/units/ranged-attack.json'
     );
 
+    // enemy load
     this.load.atlas(
       'basic-enemy',
-      'assets/images/basic-enemy.png',
-      'assets/images/basic-enemy.json'
+      'assets/images/enemies/basic-enemy.png',
+      'assets/images/enemies/basic-enemy.json'
     );
     this.load.atlas(
       'basic-enemy-die',
-      'assets/images/basic-enemy-die.png',
-      'assets/images/basic-enemy-die.json'
+      'assets/images/enemies/basic-enemy-die.png',
+      'assets/images/enemies/basic-enemy-die.json'
     );
     this.load.atlas(
       'skeleton-crusader',
-      'assets/images/skeleton-crusader.png',
-      'assets/images/skeleton-crusader.json'
+      'assets/images/enemies/skeleton-crusader.png',
+      'assets/images/enemies/skeleton-crusader.json'
     );
     this.load.atlas(
       'skeleton-crusader-die',
-      'assets/images/skeleton-crusader-die.png',
-      'assets/images/skeleton-crusader-die.json'
+      'assets/images/enemies/skeleton-crusader-die.png',
+      'assets/images/enemies/skeleton-crusader-die.json'
     );
   }
 
   create(): void {
+    // projectile
     this.anims.create({
       key: 'water-projectile-anim',
       frames: this.anims.generateFrameNames('water-projectile', {
@@ -151,6 +148,7 @@ export class BootScene extends Phaser.Scene {
       repeat: -1
     });
 
+    // unit
     this.anims.create({
       key: 'tanker-attack',
       frames: this.anims.generateFrameNames('tanker-attack', {
@@ -187,6 +185,7 @@ export class BootScene extends Phaser.Scene {
       repeat: 0
     });
 
+    // enemy
     this.anims.create({
       key: 'basic-enemy',
       frames: this.anims.generateFrameNames('basic-enemy', {
@@ -198,7 +197,6 @@ export class BootScene extends Phaser.Scene {
       frameRate: 12,
       repeat: -1
     });
-
     this.anims.create({
       key: 'basic-enemy-die',
       frames: this.anims.generateFrameNames('basic-enemy-die', {
@@ -222,7 +220,6 @@ export class BootScene extends Phaser.Scene {
       frameRate: 12,
       repeat: -1
     });
-
     this.anims.create({
       key: 'skeleton-crusader-die',
       frames: this.anims.generateFrameNames('skeleton-crusader-die', {

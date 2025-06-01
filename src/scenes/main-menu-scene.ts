@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
 import { Colors } from '../config';
-import { BaseButton } from '../view';
+import { BaseButton } from '../views';
 
 export class MainMenuScene extends Phaser.Scene {
   private backgroundMusic?: Phaser.Sound.BaseSound;

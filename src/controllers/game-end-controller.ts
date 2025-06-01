@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { EnemyManager } from '../manager';
+import { EnemyManager } from '../managers';
 import { GameStateController } from './game-state-controller';
 
 interface GameOverCheckProps {

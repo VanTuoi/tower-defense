@@ -1,4 +1,4 @@
-import { GameStateManager, UnitManager } from '../../manager';
+import { GameStateManager, UnitManager } from '../../managers';
 import { GameStateController } from '../game-state-controller';
 
 export class InputHandler {
