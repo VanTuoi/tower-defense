@@ -38,7 +38,10 @@ const config: webpack.Configuration = {
   },
   devServer: {
     static: path.join(__dirname, 'dist'),
-    hot: true
+    hot: true,
+    port: 8080,
+    allowedHosts: 'all',
+    historyApiFallback: true
   },
   resolve: {
     extensions: ['.ts', '.js']

@@ -10,9 +10,21 @@ export abstract class BaseEnemy {
   protected hpText: Phaser.GameObjects.BitmapText;
   protected config: EnemyConfig;
   protected rewardGold: number;
+  protected path?: Phaser.Curves.Path;
+  protected follower?: { t: number; vec: Phaser.Math.Vector2 };
 
-  constructor(scene: Phaser.Scene, x: number, y: number, config: EnemyConfig) {
+  constructor(
+    scene: Phaser.Scene,
+    x: number,
+    y: number,
+    config: EnemyConfig,
+    path?: Phaser.Curves.Path
+  ) {
     this.scene = scene;
+    if (path) {
+      this.path = path;
+      this.follower = { t: 0, vec: new Phaser.Math.Vector2() };
+    }
 
     this.config = {
       height: 128,
@@ -42,9 +54,25 @@ export abstract class BaseEnemy {
   }
 
   public move(delta: number): void {
-    this.sprite.y += (this.speed * delta) / 1000;
-    this.hpText.y = this.sprite.y - this.config.hpTextOffsetY!;
-    this.hpText.x = this.sprite.x;
+    if (this.path && this.follower) {
+      this.follower.t += (this.speed * delta) / 100000; // điều chỉnh tốc độ phù hợp
+      this.path.getPoint(this.follower.t, this.follower.vec);
+
+      if (this.follower.t >= 1) {
+        this.sprite.y = this.scene.sys.canvas.height + 10; // vượt màn hình để bị xóa
+      } else {
+        this.sprite.setPosition(this.follower.vec.x, this.follower.vec.y);
+        this.hpText.setPosition(
+          this.follower.vec.x,
+          this.follower.vec.y - this.config.hpTextOffsetY!
+        );
+      }
+    } else {
+      // fallback nếu không có path
+      this.sprite.y += (this.speed * delta) / 1000;
+      this.hpText.y = this.sprite.y - this.config.hpTextOffsetY!;
+      this.hpText.x = this.sprite.x;
+    }
   }
 
   public takeDamage(damage: number): boolean {
@@ -76,6 +104,10 @@ export abstract class BaseEnemy {
 
   public getRewardGold(): number {
     return this.rewardGold;
+  }
+
+  public getPath(): Phaser.Curves.Path {
+    return this.path;
   }
 
   public isOffScreen(height: number): boolean {

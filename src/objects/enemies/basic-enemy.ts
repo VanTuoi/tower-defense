@@ -2,13 +2,25 @@ import { EnemyConfig } from '../../interfaces';
 import { BaseEnemy } from './base-enemy';
 
 export class BasicEnemy extends BaseEnemy {
-  constructor(scene: Phaser.Scene, x: number, y: number, config: EnemyConfig) {
-    super(scene, x, y, {
-      ...config,
-      speed: config.speed,
-      hpTextOffsetY: 70,
-      texture: 'basicEnemy'
-    });
+  constructor(
+    scene: Phaser.Scene,
+    x: number,
+    y: number,
+    config: EnemyConfig,
+    path?: Phaser.Curves.Path
+  ) {
+    super(
+      scene,
+      x,
+      y,
+      {
+        ...config,
+        hpTextOffsetY: 70,
+        texture: 'basicEnemy'
+      },
+      path
+    );
+
     this.sprite.play('basic-enemy');
     this.resizeSprite();
   }

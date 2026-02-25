@@ -16,7 +16,12 @@ export class EnemyEndChecker {
     gameHeight
   }: EnemyEndCheckerProps) {
     enemyManager.getEnemies().forEach((enemy, index) => {
-      if (enemy.getSprite().y >= gameHeight - 32) {
+      const endPoint = enemy.getPath().getEndPoint();
+      const dx = enemy.getSprite().x - endPoint.x;
+      const dy = enemy.getSprite().y - endPoint.y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+
+      if (distance < 10) {
         gameStateController.reduceHp(enemy.getPower());
         gameStateManager.updateHp(gameStateController.getHp());
 

@@ -2,13 +2,24 @@ import { EnemyConfig } from '../../interfaces';
 import { BaseEnemy } from './base-enemy';
 
 export class SkeletonCrusader extends BaseEnemy {
-  constructor(scene: Phaser.Scene, x: number, y: number, config: EnemyConfig) {
-    super(scene, x, y, {
-      ...config,
-      speed: config.speed,
-      hpTextOffsetY: 80,
-      texture: 'skeletonCrusader'
-    });
+  constructor(
+    scene: Phaser.Scene,
+    x: number,
+    y: number,
+    config: EnemyConfig,
+    path?: Phaser.Curves.Path
+  ) {
+    super(
+      scene,
+      x,
+      y,
+      {
+        ...config,
+        hpTextOffsetY: 70,
+        texture: 'basicEnemy'
+      },
+      path
+    );
     this.sprite.play('skeleton-crusader');
     this.resizeSprite();
   }
